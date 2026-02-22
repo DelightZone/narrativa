@@ -1,0 +1,35 @@
+- - text: "\n"
+  - translate: "[ %1$s ]   %2$s"
+    color: gray
+    with:
+      - text: "Cee Vyte†"
+      - text: "Eh— uh... Cheese?"
+        color: white
+- - text: "\n"
+  - translate: "[ %1$s ]   %2$s"
+    color: gray
+    with:
+      - text: "Cheese"
+        color: gold
+      - text: "Cheese."
+        color: white
+- - text: "\n"
+  - translate: "[ %1$s ]   %2$s"
+    color: gray
+    with:
+      - text: "Cee Vyte†"
+      - text: "I... honestly don't know how to react to that."
+        color: white
+- - text: "Well—here! I now have Cheese!... for some reason."
+    command: "function ceevyte:actions/example/hello_world/cheese/give_cheese"
+- - text: "We got all kinds of cheese."
+- - text: "Brick, roll, pile, nugget, paste, and even a block of cheese!"
+- - text: "All at your command."
+- - text: "Welp, that's everything for now!"
+- - translate: "%s's up if you wanna contribute to the project. God bless! :D"
+    with:
+      - text: "GitHub"
+        color: "#7CB9E8"
+        click_event:
+          action: open_url
+          url: "https://github.com/DelightZone/narrativa"

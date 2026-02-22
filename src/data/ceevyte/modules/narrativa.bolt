@@ -1,0 +1,325 @@
+"""
+Made by: @ceevyte
+---- --- --------
+"""
+
+import yaml
+from pathlib import Path
+
+
+"""
+Function Tags
+-------------
+"""
+
+append function_tag minecraft:load {
+    "values": [
+        "ceevyte:narrativa/choice/load"
+    ]
+}
+
+
+"""
+Dialogue API
+-------- ---
+"""
+
+def newDialogue(l, autodub=None):
+
+    function ceevyte:narrativa/dialogue/_/end
+
+    if autodub is not None:
+        for i, line in enumerate(l):
+            line[0]["autodub"] = str(autodub) + f"{i}"
+
+    data modify storage ceevyte:narrativa/dialogue context.lines set value l
+
+    display_block()
+
+    function ceevyte:narrativa/dialogue/link
+    function ceevyte:narrativa/dialogue/out with storage ceevyte:narrativa/dialogue
+
+    if len(l) > 1:
+        tag @s add ceevyte.narrativa.dialogue.active
+
+
+def loadDialogue(*paths):
+    result = []
+
+    for p in paths:
+        with open(p, "r", encoding="utf-8") as f:
+            data = yaml.safe_load(f)
+
+        result.extend(data)
+
+    return result
+
+
+"""
+Dialogue Display
+-------- -------
+"""
+
+def display_block():
+
+    execute unless data storage ceevyte:narrativa/dialogue \
+        context.lines[0][0].skip \
+        run tellraw @s {"nbt":"context.lines[0]","storage":"ceevyte:narrativa/dialogue","interpret":true}
+
+    function ceevyte:narrativa/dialogue/run/sound   with storage ceevyte:narrativa/dialogue context.lines[0][0]
+    function ceevyte:narrativa/dialogue/run/command with storage ceevyte:narrativa/dialogue context.lines[0][0]
+
+    stopsound @s voice
+
+    function ceevyte:narrativa/dialogue/run/autodub with storage ceevyte:narrativa/dialogue context.lines[0][0]
+
+
+function ceevyte:narrativa/dialogue/display_block:
+    display_block()
+
+
+"""
+Dialogue Storage
+-------- -------
+"""
+
+function ceevyte:narrativa/dialogue/link:
+    data modify storage ceevyte:narrativa/dialogue UUID set \
+        from entity @s UUID
+
+
+function ceevyte:narrativa/dialogue/put:
+    data remove storage ceevyte:narrativa/dialogue context
+    $data modify storage ceevyte:narrativa/dialogue context set \
+        from storage ceevyte:narrativa/dialogue players."$(UUID)"
+
+
+function ceevyte:narrativa/dialogue/out:
+    $data modify storage ceevyte:narrativa/dialogue players."$(UUID)" set \
+        from storage ceevyte:narrativa/dialogue context
+    data remove storage ceevyte:narrativa/dialogue context
+
+
+"""
+Roll Dialogue Forward
+---- -------- -------
+"""
+
+function ceevyte:narrativa/dialogue/_/step:
+    tag @s remove ceevyte.narrativa.dialogue.autoskip
+    function ceevyte:narrativa/dialogue/step
+
+
+function ceevyte:narrativa/dialogue/step:
+
+    function ceevyte:narrativa/dialogue/link
+    function ceevyte:narrativa/dialogue/put with storage ceevyte:narrativa/dialogue
+
+    data modify storage ceevyte:narrativa/dialogue context.oldLines append \
+        from storage ceevyte:narrativa/dialogue context.lines[0]
+    data remove storage ceevyte:narrativa/dialogue context.lines[0]
+
+    execute if data storage ceevyte:narrativa/dialogue \
+        context.lines[0][0].autoskip \
+        run tag @s add ceevyte.narrativa.dialogue.autoskip
+
+    execute if data storage ceevyte:narrativa/dialogue context.lines[0] \
+        unless data storage ceevyte:narrativa/dialogue context.lines[0][0].skip_display \
+        run function ceevyte:narrativa/dialogue/display_block
+
+    execute unless data storage ceevyte:narrativa/dialogue context.lines[-2]:
+        function ceevyte:narrativa/dialogue/_/end
+
+    function ceevyte:narrativa/dialogue/out with storage ceevyte:narrativa/dialogue
+
+    execute if entity @s[tag=ceevyte.narrativa.dialogue.autoskip] \
+        run function ceevyte:narrativa/dialogue/_/step
+
+
+"""
+Roll Dialogue Backward
+---- -------- --------
+"""
+
+function ceevyte:narrativa/dialogue/_/back:
+    tag @s remove ceevyte.narrativa.dialogue.autoskip
+    function ceevyte:narrativa/dialogue/back
+
+
+function ceevyte:narrativa/dialogue/back:
+
+    function ceevyte:narrativa/dialogue/link
+    function ceevyte:narrativa/dialogue/put with storage ceevyte:narrativa/dialogue
+
+    data modify storage ceevyte:narrativa/dialogue context.lines prepend \
+        from storage ceevyte:narrativa/dialogue context.oldLines[-1]
+    data remove storage ceevyte:narrativa/dialogue context.oldLines[-1]
+
+    execute if data storage ceevyte:narrativa/dialogue \
+        context.lines[0][0].autoskip \
+        run tag @s add ceevyte.narrativa.dialogue.autoskip
+
+    execute if data storage ceevyte:narrativa/dialogue context.lines[0] \
+        unless data storage ceevyte:narrativa/dialogue context.lines[0][0].skip_display \
+        run function ceevyte:narrativa/dialogue/display_block
+
+    execute unless data storage ceevyte:narrativa/dialogue context.oldLines[0]:
+        function ceevyte:narrativa/dialogue/_/end
+
+    function ceevyte:narrativa/dialogue/out with storage ceevyte:narrativa/dialogue
+
+    execute if entity @s[tag=ceevyte.narrativa.dialogue.autoskip] \
+        run function ceevyte:narrativa/dialogue/_/back
+
+
+"""
+Dialogue Runners
+-------- -------
+"""
+
+function ceevyte:narrativa/dialogue/run/sound:
+    $execute anchored eyes positioned ^ ^ ^ run playsound $(sound) master @s ~ ~ ~ 999 1 1
+
+
+function ceevyte:narrativa/dialogue/run/command:
+    $$(command)
+
+
+function ceevyte:narrativa/dialogue/run/autodub:
+    $execute anchored eyes positioned ^ ^ ^ run playsound $(autodub) voice @s ~ ~ ~ 999 1 1
+
+
+"""
+Dialogue End
+-------- ---
+"""
+
+function ceevyte:narrativa/dialogue/_/end:
+    tag @s remove ceevyte.narrativa.dialogue.active
+    function ceevyte:narrativa/dialogue/link
+    function ceevyte:narrativa/dialogue/end
+    function ceevyte:narrativa/dialogue/ends with storage ceevyte:narrativa/dialogue
+
+
+function ceevyte:narrativa/dialogue/end:
+    data remove storage ceevyte:narrativa/dialogue context.lines
+    data remove storage ceevyte:narrativa/dialogue context.oldLines
+
+
+function ceevyte:narrativa/dialogue/ends:
+    $data remove storage ceevyte:narrativa/dialogue players."$(UUID)"
+
+
+"""
+Choice System
+------ ------
+"""
+
+function ceevyte:narrativa/choice/load:
+    scoreboard objectives add ceevyte.narrativa.choice dummy {"text":"Choice Config","color":"gold"}
+    scoreboard objectives add ceevyte.narrativa.choice.pick trigger {"text":"Choice Picker","color":"gold"}
+
+
+function ceevyte:narrativa/choice/tick:
+    execute as @a[tag=ceevyte.narrativa.choice.tick] \
+        unless score @s ceevyte.narrativa.choice.pick matches 0 \
+        run function ceevyte:narrativa/choice/process
+    execute if score ?players ceevyte.narrativa.choice matches 1.. run return \
+        run schedule function ceevyte:narrativa/choice/tick 5t replace
+
+
+function ceevyte:narrativa/choice/process:
+
+    function ceevyte:narrativa/choice/link
+    function ceevyte:narrativa/choice/put with storage ceevyte:narrativa/choice
+
+    scoreboard players remove @s ceevyte.narrativa.choice.pick 1
+
+    execute store result storage ceevyte:narrativa/choice context.option_index int 1.0 \
+        run scoreboard players get @s ceevyte.narrativa.choice.pick
+
+    function ceevyte:narrativa/choice/pick with storage ceevyte:narrativa/choice context
+
+    data remove storage ceevyte:narrativa/choice context.options
+    data remove storage ceevyte:narrativa/choice context.option_index
+
+    function ceevyte:narrativa/choice/out with storage ceevyte:narrativa/choice
+
+    scoreboard players remove ?players ceevyte.narrativa.choice 1
+    scoreboard players reset @s ceevyte.narrativa.choice.pick
+    tag @s remove ceevyte.narrativa.choice.tick
+
+
+function ceevyte:narrativa/choice/_/end:
+    execute unless entity @s[tag=ceevyte.narrativa.choice.tick] run return 0
+
+    scoreboard players remove ?players ceevyte.narrativa.choice 1
+    scoreboard players reset @s ceevyte.narrativa.choice.pick
+    tag @s remove ceevyte.narrativa.choice.tick
+
+
+function ceevyte:narrativa/choice/pick:
+    $function ceevyte:narrativa/choice/execute with \
+        storage ceevyte:narrativa/choice context.options[$(option_index)]
+
+
+function ceevyte:narrativa/choice/execute:
+    $function $(function)
+
+
+"""
+Choice Storage
+------ -------
+"""
+
+function ceevyte:narrativa/choice/link:
+    data modify storage ceevyte:narrativa/choice UUID set from entity @s UUID
+
+
+function ceevyte:narrativa/choice/put:
+    data remove storage ceevyte:narrativa/choice context
+    $data modify storage ceevyte:narrativa/choice context set \
+        from storage ceevyte:narrativa/choice players."$(UUID)"
+
+
+function ceevyte:narrativa/choice/out:
+    $data modify storage ceevyte:narrativa/choice players."$(UUID)" set \
+        from storage ceevyte:narrativa/choice context
+    data remove storage ceevyte:narrativa/choice context
+
+
+"""
+Choice API
+------ ---
+"""
+
+CHOICE_COUNTER = 0
+
+
+def choiceCounter():
+    global CHOICE_COUNTER
+    CHOICE_COUNTER += 1
+    return f"trigger ceevyte.narrativa.choice.pick set {CHOICE_COUNTER}"
+
+
+def newChoice():
+    global CHOICE_COUNTER
+    CHOICE_COUNTER = 0
+    execute if entity @s[tag=ceevyte.narrativa.choice.tick] run return 0
+    scoreboard players enable @s ceevyte.narrativa.choice.pick
+    scoreboard players add ?players ceevyte.narrativa.choice 1
+    schedule function ceevyte:narrativa/choice/tick 1t replace
+    tag @s add ceevyte.narrativa.choice.tick
+
+
+def lockChoice(Array):
+
+    function ceevyte:narrativa/choice/link
+    function ceevyte:narrativa/choice/put with storage ceevyte:narrativa/choice
+
+    data modify storage ceevyte:narrativa/choice context.options set value Array
+
+    function ceevyte:narrativa/choice/out with storage ceevyte:narrativa/choice
+
+
+# (One of the cleanest datapacks I've made so far.   Almost proud of it.)

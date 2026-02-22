@@ -1,0 +1,38 @@
+{
+  	"name": "narrativa",
+	"description": [
+		{
+		  "color": "gold",
+		  "text": "≈ Narrativa ≈"
+		},
+		{
+		  "color": "gray",
+		  "text": "\n— by @ceevyte"
+		}
+    ],
+	"require": [
+		"bolt"
+	],
+	"data_pack": {
+		"load": [
+			"src"
+		]
+	},
+	"resource_pack": {
+		"load": [
+			"src"
+		]
+	},
+	"pipeline": [
+		"mecha"
+	],
+	"output": "build",
+	"meta": {
+		"bolt": {
+			"entrypoint": [
+				"ceevyte:narrativa",
+				"ceevyte:example_narrativa_content"
+			]
+		}
+	}
+}

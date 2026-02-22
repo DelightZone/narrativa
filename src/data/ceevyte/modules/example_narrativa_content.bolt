@@ -1,0 +1,177 @@
+import ./narrativa as Narrativa
+
+
+append function_tag minecraft:load {
+    "values": [
+        "ceevyte:dialogue/load"
+    ]
+}
+
+append function_tag minecraft:tick {
+    "values": [
+        "ceevyte:dialogue/tick"
+    ]
+}
+
+predicate ceevyte:dialogue/trigger {
+    "condition": "minecraft:entity_properties",
+    "entity": "this",
+    "predicate": {
+        "type_specific": {
+            "type": "minecraft:player",
+            "input": {
+                "forward": false,
+                "backward": false,
+                "left": false,
+                "right": false,
+                "jump": false,
+                "sneak": false,
+                "sprint": true
+            }
+        }
+    }
+}
+
+function ceevyte:dialogue/load:
+    scoreboard objectives add ceevyte.dialogue.trigger dummy {"text": "Dialogue Trigger Flip-Flop", "color": "gold"}
+
+# Example dialogue trigger. (Yes, I know it's bad.)
+function ceevyte:dialogue/tick:
+    execute as @a[tag=ceevyte.narrativa.dialogue.active]:
+        execute if score @s[predicate=!ceevyte:dialogue/trigger] ceevyte.dialogue.trigger matches 1:
+            scoreboard players reset @s ceevyte.dialogue.trigger
+        execute unless score @s[predicate=ceevyte:dialogue/trigger] ceevyte.dialogue.trigger matches 1..:
+            function ceevyte:narrativa/dialogue/_/step
+            scoreboard players set @s ceevyte.dialogue.trigger 1
+
+function ceevyte:dialogues/example/hello_world:
+    Narrativa.newDialogue(Narrativa.loadDialogue(
+        "dialogues/example/hello_world.yml"
+    ), "ceevyte:dialogues.example.hello_world.")
+
+# Yeahhh, sorry that the dialogue is so short, and the choice thing is just a frickin' BOMB in comparison,
+# but I couldn't make it any smaller, without keeping the flexibility of display intact :D
+
+# I highly suggest using https://www.minecraftjson.com/ for this!!! It even allows to
+# leave my function in directly, which is neat.
+function ceevyte:choices/example/hello_world:
+    Narrativa.newChoice()
+    tellraw @s [
+        {
+            "text": "\n"
+        },
+        {
+            "text": "— [1] Wowww, that's so cool :0",
+            "color": "gray",
+            "click_event": {
+                "action": "run_command",
+                # This function exists so that you don't have to type out the numbers manually,
+                # and you can thank me later :^
+                "command": Narrativa.choiceCounter()
+            },
+            "hover_event": {
+                "action": "show_text",
+                "value": [
+                    {
+                        # You can do like, descriptions and stuff, but that's just
+                        # generic Json tellraw.
+                        "text": "False flattery. Classic."
+                    }
+                ]
+            }
+        },
+        {
+            "text": "\n"
+        },
+        {
+            "text": "— [2] Cheese.",
+            "color": "gray",
+            "click_event": {
+                "action": "run_command",
+                "command": Narrativa.choiceCounter()
+            },
+            "hover_event": {
+                "action": "show_text",
+                "value": [
+                    {
+                        "text": "I... honestly don't remember putting this in. O_o"
+                    }
+                ]
+            }
+        },
+        {
+            "text": "\n"
+        },
+        {
+            "text": "— [3] Could you explain it a bit more?",
+            "color": "gray",
+            "click_event": {
+                "action": "run_command",
+                "command": Narrativa.choiceCounter()
+            },
+            "hover_event": {
+                "action": "show_text",
+                "value": [
+                    {
+                        "text": "Nerd."
+                    }
+                ]
+            }
+        }
+    ]
+
+    # For each Narrativa.choiceCounter() you need to put the functions following their respective choices in that specific order.
+    Narrativa.lockChoice(
+        [
+            # [1]
+            {
+                "function": "ceevyte:dialogues/example/hello_world/that_s_so_cool"
+            },
+            # [2]
+            {
+                "function": "ceevyte:dialogues/example/hello_world/cheese"
+            },
+            # [3]
+            {
+                "function": "ceevyte:dialogues/example/hello_world/could_you_explain"
+            }
+        ]
+    )
+
+
+# [1]
+function ceevyte:dialogues/example/hello_world/that_s_so_cool:
+    Narrativa.newDialogue(Narrativa.loadDialogue(
+        "dialogues/example/hello_world/that_s_so_cool.yml",
+        # Yes, you can connect multiple files into one dialogue.
+        "dialogues/example/hello_world/end.yml"
+    ), "ceevyte:dialogues.example.hello_world.that_s_so_cool.")
+
+
+# [2]
+function ceevyte:dialogues/example/hello_world/cheese:
+    Narrativa.newDialogue(Narrativa.loadDialogue(
+        "dialogues/example/hello_world/cheese.yml",
+        "dialogues/example/hello_world/end.yml"
+    ), "ceevyte:dialogues.example.hello_world.cheese.")
+
+# CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE
+# CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE
+# CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE
+# CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE
+# CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE CHEESE
+function ceevyte:actions/example/hello_world/cheese/give_cheese:
+    give @p poisonous_potato[food={nutrition:0.0,saturation:0.0,can_always_eat:true},consumable={consume_seconds:0.8,animation:"eat",has_consume_particles:true},item_name="Brick O' Cheese",item_model="minecraft:gold_ingot"] 1
+    give @p poisonous_potato[food={nutrition:0.0,saturation:0.0,can_always_eat:true},consumable={consume_seconds:0.8,animation:"eat",has_consume_particles:true},item_name="Roll O' Cheese",item_model="minecraft:golden_nautilus_armor"] 1
+    give @p poisonous_potato[food={nutrition:0.0,saturation:0.0,can_always_eat:true},consumable={consume_seconds:0.8,animation:"eat",has_consume_particles:true},item_name="Pile O' Cheese",item_model="minecraft:raw_gold"] 1
+    give @p poisonous_potato[food={nutrition:0.0,saturation:0.0,can_always_eat:true},consumable={consume_seconds:0.8,animation:"eat",has_consume_particles:true},item_name="Nugget O' Cheese",item_model="minecraft:gold_nugget"] 1
+    give @p poisonous_potato[food={nutrition:0.0,saturation:0.0,can_always_eat:true},consumable={consume_seconds:0.8,animation:"eat",has_consume_particles:true},item_name="Paste O' Cheese",item_model="minecraft:yellow_dye"] 1
+    give @p poisonous_potato[food={nutrition:0.0,saturation:0.0,can_always_eat:true},consumable={consume_seconds:0.8,animation:"eat",has_consume_particles:true},item_name="Block O' Cheese",item_model="minecraft:horn_coral_block"] 1
+
+
+# [3]
+function ceevyte:dialogues/example/hello_world/could_you_explain:
+    Narrativa.newDialogue(Narrativa.loadDialogue(
+        "dialogues/example/hello_world/could_you_explain.yml",
+        "dialogues/example/hello_world/end.yml"
+    ), "ceevyte:dialogues.example.hello_world.could_you_explain.")

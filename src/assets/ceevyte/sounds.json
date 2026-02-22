@@ -1,0 +1,380 @@
+{
+    "dialogues.example.hello_world.0": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/0"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.1": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/1"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.2": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/2"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.3": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/3"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.4": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/4"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.5": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/5"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.6": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/6"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.7": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/7"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.8": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/8"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.9": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/9"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.10": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/10"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.11": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/11"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.12": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/12"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.13": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/13"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.14": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/14"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.15": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/15"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.16": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/16"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.17": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/17"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.cheese.0": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/cheese/0"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.cheese.1": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/cheese/1"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.cheese.2": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/cheese/2"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.cheese.3": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/cheese/3"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.cheese.4": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/cheese/4"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.cheese.5": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/cheese/5"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.cheese.6": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/cheese/6"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.cheese.7": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/cheese/7"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.cheese.8": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/cheese/8"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.could_you_explain.0": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/could_you_explain/0"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.could_you_explain.1": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/could_you_explain/1"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.could_you_explain.2": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/could_you_explain/2"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.could_you_explain.3": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/could_you_explain/3"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.could_you_explain.4": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/could_you_explain/4"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.could_you_explain.5": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/could_you_explain/5"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.could_you_explain.6": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/could_you_explain/6"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.could_you_explain.7": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/could_you_explain/7"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.could_you_explain.8": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/could_you_explain/8"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.could_you_explain.9": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/could_you_explain/9"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.could_you_explain.10": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/could_you_explain/10"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.could_you_explain.11": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/could_you_explain/11"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.could_you_explain.12": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/could_you_explain/12"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.could_you_explain.13": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/could_you_explain/13"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.could_you_explain.14": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/could_you_explain/14"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.could_you_explain.15": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/could_you_explain/15"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.could_you_explain.16": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/could_you_explain/16"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.could_you_explain.17": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/could_you_explain/17"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.could_you_explain.18": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/could_you_explain/18"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.could_you_explain.19": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/could_you_explain/19"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.could_you_explain.20": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/could_you_explain/20"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.could_you_explain.21": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/could_you_explain/21"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.could_you_explain.22": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/could_you_explain/22"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.that_s_so_cool.0": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/that_s_so_cool/0"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.that_s_so_cool.1": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/that_s_so_cool/1"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.that_s_so_cool.2": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/that_s_so_cool/2"
+            }
+        ]
+    },
+    "dialogues.example.hello_world.that_s_so_cool.3": {
+        "sounds": [
+            {
+                "name": "ceevyte:dialogues/example/hello_world/that_s_so_cool/3"
+            }
+        ]
+    }
+}

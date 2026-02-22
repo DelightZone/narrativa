@@ -1,0 +1,64 @@
+- - text: "\n"
+  - translate: "[ %1$s ]   %2$s"
+    color: gray
+    with:
+      - text: "Cee Vyte†"
+      - text: "Hello, World!"
+        color: white
+- - translate: "Creator here. Here's a quick run-down on my %s, so you'll know what and where to put >:D"
+    with:
+    - text: "Dialogue System"
+      color: yellow
+- - translate: "You can do json %1$s, such as %2$s, %3$s, %4$s and even %5$s, right in the .yml file!"
+    with:
+    -
+      - text: "s"
+        color: "#FFCBCB"
+      - text: "t"
+        color: "#FFE1CB"
+      - text: "y"
+        color: "#FFFACB"
+      - text: "l"
+        color: "#D3FFCB"
+      - text: "i"
+        color: "#CBE5FF"
+      - text: "n"
+        color: "#E5CBFF"
+      - text: "g"
+        color: "#CBFFE9"
+    -
+      - text: "Bold"
+        bold: true
+    -
+      - text: "Italic"
+        italic: true
+    -
+      - text: "Strikethrough"
+        strikethrough: true
+    -
+      - text: "Obfuscated"
+        obfuscated: true
+- - text: "Just keep in mind that the system processes dialogues in a strict way,"
+- - text: "so you gotta keep it all +- as shown in this example."
+- - text: "Components-wise, I mean. The display part is at your command."
+- - text: "Furthermore, there's options for:"
+- - text: "sounds,"
+    sound: "minecraft:block.bell.use"
+- - text: "commands,"
+    command: 'title @s actionbar {"text": "I am above your hotbar now! :D"}'
+- - text: "autoskip,"
+    autoskip: true
+- - text: "just skip (this will be skipped entirely)"
+    skip: true
+- - text: "and well, auto dubbing! But, of course,"
+- - text: "it was active this whole time, so like..."
+- - translate: "... I am talking %s, if you haven't realized it before."
+    with:
+    - text: "in-game"
+      italic: true
+- - text: "Hehe... well, now: the choice system!"
+- - text: "Though, make sure to not reload the dialogue again,"
+- - text: "because a choice cannot start if another is active."
+- - text: "Now, pick an option, please:"
+- - command: "function ceevyte:choices/example/hello_world"
+    skip: true
