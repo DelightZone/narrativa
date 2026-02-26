@@ -32,9 +32,10 @@ Everything in the `examples` folder works the way it was intended, please report
 
 Run the following command in-game to start the example Hello World dialogue:
 ```mcfunction
-/function ceevyte:dialogues/example/hello_world
+/function ceevyte:dialogues/en_us/example/hello_world
 ```
-It will explain the basics to you. At the end of the dialogue, there will be Choice options (which is its own system). Pick either `[2] Cheese.` for the showcase of capabilities in-use; or `[3] Could you explain it a bit more?` for a more technical explanation of how to actually use it.
+It will explain the basics to you. At the end of the dialogue, there will be choice options (which is its own system).
+Pick either `[2] Cheese.` for the showcase of capabilities in-use; or `[3] Could you explain it a bit more?` for a more technical explanation of how to actually use it.
 
 ---
 
@@ -45,7 +46,10 @@ To simplify your pain in the back, here is the technical explanation directly fr
 > ⚠️ **Warning:** Keep Narrativa in a separate datapack from your main project. Failing to do so will cause static dialogues to rebuild on every `beet build`. This is undesirable.
 
 ### Step 1: Folders
-Place the `dialogues` folder at the top level of your project. Place your `.yml` files inside it. Please keep the name & path of it consistent everywhere. Reference them from a module.
+Place the `dialogues` folder at the top level of your project.
+Place your `.yml` files inside it.
+Please keep the name & path of it consistent everywhere.
+Reference them from a module.
 
 ### Step 2: Modules
 Create a module. Recommended name: `X_narrativa_content.bolt`. 
@@ -61,7 +65,7 @@ Autodub generates voice lines automatically.
    *(Output: `.ogg` files from 0 to N. Requires enough different English voices to be installed on your system).*
 2. Open `sounds.py`. Add dialogue lines to the `specs` array as shown in examples.
 3. Run the script. *(Output: `sounds.json`).* 
-4. Place it in your ResourcePack. Ensure the `.ogg` file path in `sounds.py` matches the actual file location.
+4. Place it in your resourcepack. Ensure the `.ogg` file path in `sounds.py` matches the actual file location.
 
 ---
 
