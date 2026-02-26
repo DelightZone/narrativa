@@ -26,10 +26,10 @@ def auto_merge_dialogues(dialogue_specs):
 
 if __name__ == "__main__":
     specs = [
-        ("dialogues.example.hello_world", "ceevyte:dialogues/example/hello_world", 18),
-        ("dialogues.example.hello_world.cheese", "ceevyte:dialogues/example/hello_world/cheese", 9),
-        ("dialogues.example.hello_world.could_you_explain", "ceevyte:dialogues/example/hello_world/could_you_explain", 25),
-        ("dialogues.example.hello_world.that_s_so_cool", "ceevyte:dialogues/example/hello_world/that_s_so_cool", 5)
+        ("dialogues.en_us.example.hello_world", "ceevyte:dialogues/en_us/example/hello_world", 18),
+        ("dialogues.en_us.example.hello_world.cheese", "ceevyte:dialogues/en_us/example/hello_world/cheese", 9),
+        ("dialogues.en_us.example.hello_world.could_you_explain", "ceevyte:dialogues/en_us/example/hello_world/could_you_explain", 25),
+        ("dialogues.en_us.example.hello_world.that_s_so_cool", "ceevyte:dialogues/en_us/example/hello_world/that_s_so_cool", 5)
     ]
 
     final_json = auto_merge_dialogues(specs)

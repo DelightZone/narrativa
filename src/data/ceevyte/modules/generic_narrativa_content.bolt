@@ -1,0 +1,41 @@
+append function_tag minecraft:load {
+    "values": [
+        "ceevyte:dialogue/load"
+    ]
+}
+
+append function_tag minecraft:tick {
+    "values": [
+        "ceevyte:dialogue/tick"
+    ]
+}
+
+predicate ceevyte:dialogue/trigger {
+    "condition": "minecraft:entity_properties",
+    "entity": "this",
+    "predicate": {
+        "type_specific": {
+            "type": "minecraft:player",
+            "input": {
+                "forward": false,
+                "backward": false,
+                "left": false,
+                "right": false,
+                "jump": false,
+                "sneak": false,
+                "sprint": true
+            }
+        }
+    }
+}
+
+function ceevyte:dialogue/load:
+    scoreboard objectives add ceevyte.dialogue.trigger dummy {"text": "Dialogue Trigger Flip-Flop", "color": "gold"}
+
+function ceevyte:dialogue/tick:
+    execute as @a[tag=ceevyte.narrativa.dialogue.active]:
+        execute if score @s[predicate=!ceevyte:dialogue/trigger] ceevyte.dialogue.trigger matches 1:
+            scoreboard players reset @s ceevyte.dialogue.trigger
+        execute unless score @s[predicate=ceevyte:dialogue/trigger] ceevyte.dialogue.trigger matches 1..:
+            function ceevyte:narrativa/dialogue/_/step
+            scoreboard players set @s ceevyte.dialogue.trigger 1

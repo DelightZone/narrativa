@@ -1,0 +1,134 @@
+import ./narrativa as Narrativa
+
+function ceevyte:dialogues/ru_ru/example/hello_world:
+    Narrativa.newDialogue(Narrativa.loadDialogue(
+        "dialogues/ru_ru/example/hello_world.yml"
+    ), "ceevyte:dialogues.ru_ru.example.hello_world.")
+
+# Да-а, извините, что диалог такой короткий, а система выбора по сравнению с ним просто огромная,
+# но я не смог сделать её меньше, не потеряв гибкость отображения :D
+
+# Очень советую использовать https://www.minecraftjson.com/ для этого!!! Он даже позволяет
+# вставлять мою функцию напрямую, что довольно удобно.
+function ceevyte:choices/ru_ru/example/hello_world:
+    Narrativa.newChoice()
+    tellraw @s [
+        {
+            "text": "\n"
+        },
+        {
+            "text": "— [1] Вааау, это так круто :0",
+            "color": "gray",
+            "click_event": {
+                "action": "run_command",
+                # Эта функция существует для того, чтобы тебе не пришлось вручную вводить цифры,
+                # потом ещё спасибо скажешь :^
+                "command": Narrativa.choiceCounter()
+            },
+            "hover_event": {
+                "action": "show_text",
+                "value": [
+                    {
+                        # Можно добавлять описания и прочее, но это обычный
+                        # Json tellraw.
+                        "text": "Ложная лесть. Классика."
+                    }
+                ]
+            }
+        },
+        {
+            "text": "\n"
+        },
+        {
+            "text": "— [2] Сыр.",
+            "color": "gray",
+            "click_event": {
+                "action": "run_command",
+                "command": Narrativa.choiceCounter()
+            },
+            "hover_event": {
+                "action": "show_text",
+                "value": [
+                    {
+                        "text": "Я... честно говоря, не помню, зачем я это вообще добавил. O_o"
+                    }
+                ]
+            }
+        },
+        {
+            "text": "\n"
+        },
+        {
+            "text": "— [3] Можешь объяснить это немного подробнее?",
+            "color": "gray",
+            "click_event": {
+                "action": "run_command",
+                "command": Narrativa.choiceCounter()
+            },
+            "hover_event": {
+                "action": "show_text",
+                "value": [
+                    {
+                        "text": "Ботан."
+                    }
+                ]
+            }
+        }
+    ]
+
+    # Для каждого Narrativa.choiceCounter() нужно указать функции,
+    # соответствующие их вариантам, именно в таком порядке.
+    Narrativa.lockChoice(
+        [
+            # [1]
+            {
+                "function": "ceevyte:dialogues/ru_ru/example/hello_world/that_s_so_cool"
+            },
+            # [2]
+            {
+                "function": "ceevyte:dialogues/ru_ru/example/hello_world/cheese"
+            },
+            # [3]
+            {
+                "function": "ceevyte:dialogues/ru_ru/example/hello_world/could_you_explain"
+            }
+        ]
+    )
+
+
+# [1]
+function ceevyte:dialogues/ru_ru/example/hello_world/that_s_so_cool:
+    Narrativa.newDialogue(Narrativa.loadDialogue(
+        "dialogues/ru_ru/example/hello_world/that_s_so_cool.yml",
+        # Да, можно объединять несколько файлов в один диалог.
+        "dialogues/ru_ru/example/hello_world/end.yml"
+    ), "ceevyte:dialogues.ru_ru.example.hello_world.that_s_so_cool.")
+
+
+# [2]
+function ceevyte:dialogues/ru_ru/example/hello_world/cheese:
+    Narrativa.newDialogue(Narrativa.loadDialogue(
+        "dialogues/ru_ru/example/hello_world/cheese.yml",
+        "dialogues/ru_ru/example/hello_world/end.yml"
+    ), "ceevyte:dialogues.ru_ru.example.hello_world.cheese.")
+
+# СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР
+# СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР
+# СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР
+# СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР
+# СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР СЫР
+function ceevyte:actions/ru_ru/example/hello_world/cheese/give_cheese:
+    give @p poisonous_potato[food={nutrition:0.0,saturation:0.0,can_always_eat:true},consumable={consume_seconds:0.8,animation:"eat",has_consume_particles:true},item_name="Брусок Сыра",item_model="minecraft:gold_ingot"] 1
+    give @p poisonous_potato[food={nutrition:0.0,saturation:0.0,can_always_eat:true},consumable={consume_seconds:0.8,animation:"eat",has_consume_particles:true},item_name="Рулет Сыра",item_model="minecraft:golden_nautilus_armor"] 1
+    give @p poisonous_potato[food={nutrition:0.0,saturation:0.0,can_always_eat:true},consumable={consume_seconds:0.8,animation:"eat",has_consume_particles:true},item_name="Кучка Сыра",item_model="minecraft:raw_gold"] 1
+    give @p poisonous_potato[food={nutrition:0.0,saturation:0.0,can_always_eat:true},consumable={consume_seconds:0.8,animation:"eat",has_consume_particles:true},item_name="Кусочек Сыра",item_model="minecraft:gold_nugget"] 1
+    give @p poisonous_potato[food={nutrition:0.0,saturation:0.0,can_always_eat:true},consumable={consume_seconds:0.8,animation:"eat",has_consume_particles:true},item_name="Сырная Паста",item_model="minecraft:yellow_dye"] 1
+    give @p poisonous_potato[food={nutrition:0.0,saturation:0.0,can_always_eat:true},consumable={consume_seconds:0.8,animation:"eat",has_consume_particles:true},item_name="Блок Сыра",item_model="minecraft:horn_coral_block"] 1
+
+
+# [3]
+function ceevyte:dialogues/ru_ru/example/hello_world/could_you_explain:
+    Narrativa.newDialogue(Narrativa.loadDialogue(
+        "dialogues/ru_ru/example/hello_world/could_you_explain.yml",
+        "dialogues/ru_ru/example/hello_world/end.yml"
+    ), "ceevyte:dialogues.ru_ru.example.hello_world.could_you_explain.")

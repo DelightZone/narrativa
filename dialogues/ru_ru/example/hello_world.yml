@@ -1,0 +1,69 @@
+- - translate: "[ %1$s ]   %2$s"
+    color: gray
+    with:
+      - text: "Cee Vyte†"
+      - text: "Привет, Мир!"
+        color: white
+- - translate: "На связи создатель. Вот краткий разбор моей %s, чтобы ты знал, что и куда вставлять >:D"
+    with:
+    - text: "Системы Диалогов"
+      color: yellow
+- - translate: "Ты можешь использовать json-%1$s, а так же %2$s, %3$s, %4$s и даже %5$s, прямо в .yml файле!"
+    with:
+    -
+      - text: "с"
+        color: "#FFCBCB"
+      - text: "т"
+        color: "#FFE1CB"
+      - text: "и"
+        color: "#FFFACB"
+      - text: "л"
+        color: "#D3FFCB"
+      - text: "и"
+        color: "#CBE5FF"
+      - text: "з"
+        color: "#E5CBFF"
+      - text: "а"
+        color: "#CBFFE9"
+      - text: "ц"
+        color: "#FFCBCB"
+      - text: "и"
+        color: "#FFE1CB"
+      - text: "ю"
+        color: "#FFFACB"
+    -
+      - text: "Жирный"
+        bold: true
+    -
+      - text: "Курсив"
+        italic: true
+    -
+      - text: "Зачёркнутый"
+        strikethrough: true
+    -
+      - text: "Обфусцированный"
+        obfuscated: true
+- - text: "Просто имей в виду, что система обрабатывает диалоги строго,"
+- - text: "так что нужно держать всё примерно так, как показано в этом примере."
+- - text: "Я имею в виду структуру компонентов. А отображение на твоё усмотрение."
+- - text: "Кроме того, есть опции для:"
+- - text: "звуков,"
+    sound: "minecraft:block.bell.use"
+- - text: "команд,"
+    command: 'title @s actionbar {"text": "Теперь я над твоим инвентарём! :D"}'
+- - text: "автопропуска,"
+    autoskip: true
+- - text: "просто пропуска (это будет полностью пропущено)"
+    skip: true
+- - text: "и, конечно же, автоматической озвучки! Хотя,"
+- - text: "она была активна всё это время, так что..."
+- - translate: "... я говорю %s, если ты вдруг ещё не заметил."
+    with:
+    - text: "в игре"
+      italic: true
+- - text: "Хехе... ну а теперь: система выбора!"
+- - text: "Только убедись, что не перезагружаешь диалог снова,"
+- - text: "потому что выбор не может начаться, если уже активен другой."
+- - text: "А теперь выбери вариант, пожалуйста:"
+- - command: "function ceevyte:choices/ru_ru/example/hello_world"
+    skip: true

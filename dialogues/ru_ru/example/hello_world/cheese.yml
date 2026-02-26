@@ -1,0 +1,27 @@
+- - translate: "[ %1$s ]   %2$s"
+    color: gray
+    with:
+      - text: "Cee Vyte†"
+      - text: "Эм— э-э... Сыр?"
+        color: white
+- - text: "\n"
+  - translate: "[ %1$s ]   %2$s"
+    color: gray
+    with:
+      - text: "Сыр"
+        color: gold
+      - text: "Сыр."
+        color: white
+- - text: "\n"
+  - translate: "[ %1$s ]   %2$s"
+    color: gray
+    with:
+      - text: "Cee Vyte†"
+      - text: "Я... честно говоря, не знаю, как на это реагировать."
+        color: white
+- - text: "Ладно— держи! Теперь у меня есть Сыр!... по какой-то причине."
+    command: "function ceevyte:actions/ru_ru/example/hello_world/cheese/give_cheese"
+- - text: "У нас есть сыр всех видов."
+- - text: "Брусок, рулет, кучка, кусочек, паста и даже целый блок сыра!"
+- - text: "Всё по твоей команде."
+- - text: "Ну, на этом пока всё!"

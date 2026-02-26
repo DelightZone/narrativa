@@ -31,7 +31,9 @@
 		"bolt": {
 			"entrypoint": [
 				"ceevyte:narrativa",
-				"ceevyte:example_narrativa_content"
+				"ceevyte:generic_narrativa_content",
+				"ceevyte:en_us_narrativa_content",
+				"ceevyte:ru_ru_narrativa_content"
 			]
 		}
 	}

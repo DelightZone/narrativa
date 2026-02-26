@@ -1,7 +1,0 @@
-- - translate: "%s's up if you wanna contribute to the project. God bless! :D"
-    with:
-      - text: "GitHub"
-        color: "#7CB9E8"
-        click_event:
-          action: open_url
-          url: "https://github.com/DelightZone/narrativa"

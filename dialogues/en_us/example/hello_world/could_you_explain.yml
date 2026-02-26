@@ -1,0 +1,58 @@
+- - text: "\n"
+  - translate: "[ %1$s ]   %2$s"
+    color: gray
+    with:
+      - text: "Cee Vyte†"
+      - translate: "Oh, right. For sure! Lemme hand you off to the docs bot."
+        color: white
+
+- - text: "\n"
+  - translate: "[ %1$s ]   %2$s"
+    color: gray
+    with:
+      - text: "NarrativaBot"
+      - translate: "Hello. I am NarrativaBot. I will now explain Narrativa."
+        color: white
+- - text: "Warning. Keep Narrativa in a separate datapack from your main project."
+- - text: "Failing to do so will cause static dialogues to rebuild on every 'beet build'. This is undesirable."
+- - translate: "Step 1. Place the '%s' folder at the top level of your project."
+    with:
+      - text: "dialogues"
+        color: green
+- - text: "Place your .yml files inside it. Reference them from a module."
+- - translate: "Step 2. Create a module. Recommended name: '%s'."
+    with:
+      - text: "X_narrativa_content.bolt"
+        color: green
+- - text: "Register it in beet.json under meta/bolt/entrypoint, next to 'narrativa.bolt'."
+- - text: "For module contents, refer to provided examples. They are sufficient."
+- - text: "Step 3. Dialogue format."
+- - translate: "Dialogues %s follow this structure: %s"
+    with:
+      - text: "must"
+        italic: true
+      - text: "DialogueArray[ IndividualLine[ FirstTellraw{ Components } ] ]"
+        color: green
+- - text: "Deviation from this structure will cause in-game silent errors. There are no exceptions."
+- - text: "Step 4. Autodub. Place your dialogue file in the script folder, rename it 'input.yml', run the script."
+- - text: "Output: .ogg files from 0 to N. Requires enough different English voices to be installed on your system."
+- - text: "Step 5. sounds.py. Open it. Add dialogue lines to the 'specs' array as shown in examples."
+- - text: "Run the script. Output: sounds.json. Place it in your ResourcePack."
+- - text: "Ensure the .ogg file path in sounds.py matches the actual file location."
+- - text: "Step 6. Choice system. Three calls required."
+- - text: "[1] Narrativa.newChoice()"
+- - text: "[2] Send a tellraw with your choice menu. Style is yours to define."
+- - text: "[3] Call Narrativa.lockChoice( Array[ ChoiceN{ function: \"ChoiceN's Function\"} ] ), with ChoiceN for each option provided."
+- - text: "End of documentation. Beep-boop."
+- - text: "Straight up dies."
+    sound: "minecraft:block.beacon.deactivate"
+    color: gray
+    italic: true
+
+- - text: "\n"
+  - translate: "[ %1$s ]   %2$s"
+    color: gray
+    with:
+      - text: "Cee Vyte†"
+      - text: "Oop, battery died. Well, hope that helped."
+        color: white

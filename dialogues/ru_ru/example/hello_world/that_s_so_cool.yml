@@ -1,0 +1,12 @@
+- - translate: "[ %1$s ]   %2$s"
+    color: gray
+    with:
+      - text: "Cee Vyte†"
+      - translate: "О, %s согласен!"
+        color: white
+        with:
+          - text: "полностью"
+            italic: true
+- - text: "Я потратил на это гораздо больше времени, чем хотелось бы признать."
+- - text: "Хехе ;-;"
+- - text: "Если у тебя есть ещё вопросы, можешь написать мне в Discord: @ceevyte"
