@@ -1,10 +1,8 @@
-<details open>
-<summary>🌍 <strong>Language / Язык</strong></summary>
-
-- [English](README.md)
-- [Русский](README.ru.md)
-
-</details>
+<div align="center">
+  🌍 <strong>Language / Язык:</strong>
+  <br>
+  <a href="README.md">English</a> • <a href="README.ru.md">Русский</a>
+</div>
 
 ---
 
@@ -12,157 +10,136 @@
 
 # ⚔️ Narrativa
 
-### A powerful dialogue system for Minecraft datapacks based on Bolt pre-compiler
+### A project based on Bolt datapack pre-compiler, made specifically to aid in creating dialogues with ease.
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Beet](https://img.shields.io/badge/Powered%20by-Beet-yellow)](https://github.com/minecraft-beet/beet)
 [![Bolt](https://img.shields.io/badge/Built%20with-Bolt-orange)](https://github.com/mcbeet/bolt)
 [![Minecraft](https://img.shields.io/badge/Minecraft-Datapack-green)](https://www.minecraft.net)
 
-**Made by [@ceevyte](https://github.com/ceevyte)**
-
-[Features](#-features) •
 [Quick Start](#-quick-start) •
-[Documentation](#-documentation) •
-[Examples](#-examples) •
+[Setup & Documentation](#-setup--documentation) •
+[Dialogues](#-dialogues) •
+[Choices](#-choices) •
 [FAQ](#-frequently-asked-questions)
 
 </div>
 
 ---
 
-## ✨ Features
+## 🚀 Quick Start & Examples
 
-- 🎭 **Easy Dialogue Creation** - Define dialogues in simple YAML format
-- 🎨 **Rich Text Support** - Full tellraw formatting with colors, hover events, and click actions
-- 🔊 **Auto-Dubbing** - Automatic voice generation with English voices
-- 🔀 **Choice System** - Interactive player choices with customizable options
-- ⚡ **Fast Compilation** - Built on Beet & Bolt for optimal performance
-- 🎮 **Trigger System** - Flexible dialogue triggering with predicates
-- 📦 **Modular Design** - Separate datapack for better organization
+Everything in the `examples` folder works the way it was intended, please report any bugs or issues.
 
----
-
-## 🚀 Quick Start
-
-### Prerequisites
-
-- [Beet](https://github.com/minecraft-beet/beet) - Minecraft datapack development toolchain
-- Python 3.x (for auto-dubbing feature)
-
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/ceevyte/narrativa.git
-cd narrativa
-
-# Install dependencies
-pip install -r requirements.txt  # if using auto-dubbing
-
-# Build the datapack
-beet build
+Run the following command in-game to start the example Hello World dialogue:
+```mcfunction
+/function ceevyte:dialogues/example/hello_world
 ```
-
-### Usage
-
-Run `/function ceevyte:dialogues/example/hello_world` to start the example dialogue.
+It will explain the basics to you. At the end of the dialogue, there will be Choice options (which is its own system). Pick either `[2] Cheese.` for the showcase of capabilities in-use; or `[3] Could you explain it a bit more?` for a more technical explanation of how to actually use it.
 
 ---
 
-## 📚 Documentation
+## 📚 Setup & Documentation
 
-### Setup Steps
+To simplify your pain in the back, here is the technical explanation directly from the bot:
 
-<details>
-<summary><strong>Step 1: Dialogues Folder</strong></summary>
+> ⚠️ **Warning:** Keep Narrativa in a separate datapack from your main project. Failing to do so will cause static dialogues to rebuild on every `beet build`. This is undesirable.
 
-Place the `dialogues` folder at the top level of your project. Put your `.yml` files inside it.
+### Step 1: Folders
+Place the `dialogues` folder at the top level of your project. Place your `.yml` files inside it. Please keep the name & path of it consistent everywhere. Reference them from a module.
 
-</details>
-
-<details>
-<summary><strong>Step 2: Create Module</strong></summary>
-
-Create a module (recommended name: `X_narrativa_content.bolt`).
+### Step 2: Modules
+Create a module. Recommended name: `X_narrativa_content.bolt`. 
 Register it in `beet.json` under `meta/bolt/entrypoint`, next to `narrativa.bolt`.
-
-</details>
-
-<details>
-<summary><strong>Step 3: Dialogue Format</strong></summary>
-
-Dialogues must follow this structure:
-```
-DialogueArray [ IndividualLine [ FirstList { Components } ] ]
+**Important:** Inside your newly created content module, you must import the Narrativa module (both should be in the same folder):
+```bolt
+import ./narrativa as Narrativa
 ```
 
-**⚠️ Warning:** Deviation from this structure will cause in-game silent errors.
+### Step 3: Autodub & Sounds (Optional)
+Autodub generates voice lines automatically.
+1. Place your dialogue file in the `script` folder, rename it `input.yml`, and run the script. 
+   *(Output: `.ogg` files from 0 to N. Requires enough different English voices to be installed on your system).*
+2. Open `sounds.py`. Add dialogue lines to the `specs` array as shown in examples.
+3. Run the script. *(Output: `sounds.json`).* 
+4. Place it in your ResourcePack. Ensure the `.ogg` file path in `sounds.py` matches the actual file location.
 
-</details>
+---
 
-<details>
-<summary><strong>Step 4: Auto-Dub (Optional)</strong></summary>
+## 💬 Dialogues
 
-1. Place your dialogue file in the `tools/autodub` folder
-2. Rename it to `input.yml`
-3. Run the script (requires English voices on your system)
-4. Output: `.ogg` files from 0 to N
+Inside your `.yml` files, you'll quickly notice that the YML format is simply JSON here. Imagine yourself writing a `/tellraw` command, where arrays inside the main array each are a new line.
 
-</details>
+### Dialogue Format
+Dialogues **must** follow this strict structure:
+```json
+DialogueArray[ IndividualLine[ FirstList{ Components } ] ]
+```
+> 🛑 **Deviation from this structure will cause in-game silent errors. There are no exceptions. Yeah, I know, or otherwise it just breaks.**
 
-<details>
-<summary><strong>Step 5: Sounds Configuration</strong></summary>
-
-1. Open `src/assets/ceevyte/sounds.py`
-2. Add dialogue lines to the `specs` array
-3. Run the script
-4. Output: `sounds.json` - Place it in your ResourcePack
-
-</details>
-
-<details>
-<summary><strong>Step 6: Choice System</strong></summary>
-
-Three calls required:
-1. `Narrativa.newChoice()`
-2. Send a tellraw with your choice menu
-3. `Narrativa.lockChoice(Array[ChoiceN{function: "ChoiceN's Function"}])`
-
-</details>
-
-### Dialogue Example
-
-```yaml
-# dialogues/example/hello_world.yml
+*Example of a valid input structure:*
+```json
 [
-  [
-    {"text": "<NarrativaBot> Hello there!"},
-    {"text": "\n", "color": "white"},
-    {"text": "Welcome to Narrativa!", "color": "gold"}
-  ]
+  [{"text": "<username> Hello there!"}], 
+  [{"text": "I'm inside a dialogue. Cool, right?"}]
 ]
 ```
+*(Autodub works by inserting an `autodub` component inside of the first list of the line, which contains an indexed sound name).*
 
-### Code Example
+### Loading a Dialogue
+To import the YML file as a Dialogue, structure your function like this:
+```bolt
+function START_FUNCTION:
+    Narrativa.newDialogue(Narrativa.loadDialogue(
+        "PATH_TO_DIALOGUE_FILE.yml"
+    ), "AUTODUB_SOUND_NAME")
+```
 
-```python
+Example:
+```bolt
 function username:dialogues/example/hello_world:
     Narrativa.newDialogue(Narrativa.loadDialogue(
         "dialogues/example/hello_world.yml"
     ), "username:dialogues.example.hello_world.")
 ```
+*(You can also build your own interpreter: The `Narrativa.newDialogue(ArrayJSON)` just requires a valid `/tellraw` command by the structure mentioned above).*
 
----
+### Dialogue Trigger Example
+Since this is an example, we'll do a simple dialogue trigger. Just call `function ceevyte:narrativa/dialogue/_/step` when it does trigger:
 
-## 🎮 Usage Examples
-
-### Dialogue Trigger
+<details>
+<summary><strong>Show Trigger Code (Flip-Flop Logic)</strong></summary>
 
 ```bolt
+append function_tag minecraft:load {
+    "values": [
+        "username:dialogue/load"
+    ]
+}
+append function_tag minecraft:tick {
+    "values": [
+        "username:dialogue/tick"
+    ]
+}
+predicate username:dialogue/trigger {
+    "condition": "minecraft:entity_properties",
+    "entity": "this",
+    "predicate": {
+        "type_specific": {
+            "type": "minecraft:player",
+            "input": {
+                "forward": false,
+                "backward": false,
+                "left": false,
+                "right": false,
+                "jump": false,
+                "sneak": false,
+                "sprint": true
+            }
+        }
+    }
+}
 function username:dialogue/load:
-    scoreboard objectives add username.dialogue.trigger dummy
-    {"text": "Dialogue Trigger Flip-Flop", "color": "gold"}
+    scoreboard objectives add username.dialogue.trigger dummy {"text": "Dialogue Trigger Flip-Flop", "color": "gold"}
 
 function username:dialogue/tick:
     execute as @a[tag=ceevyte.narrativa.dialogue.active]:
@@ -172,106 +149,127 @@ function username:dialogue/tick:
             function ceevyte:narrativa/dialogue/_/step
             scoreboard players set @s username.dialogue.trigger 1
 ```
+</details>
 
-### Choice Menu
+By running `beet build`, the dialogues should be compiled into a datapack properly.
 
+---
+
+## 🔀 Choices
+
+This one is a lot easier, and requires less fiddling with my awful code.
+Choice system requires three calls:
+1. `Narrativa.newChoice()` at the start of your function.
+2. Send a `tellraw` with your choice menu. Style is yours to define.
+3. Call `Narrativa.lockChoice(...)` at the end.
+
+### How Clicks Work (No Cheats Needed!)
+Use `click_event` to `run_command`, but instead of running an actual command, just put `Narrativa.choiceCounter()` there. **It automatically generates a `/trigger` command, so it will work even without the cheats being on!**
+
+### Full Choice Example
 ```bolt
 function ceevyte:choices/example/hello_world:
     Narrativa.newChoice()
     tellraw @s [
         {
-            "text": "\n— [1] Wowww, that's so cool :0",
+            "text": "\n"
+        },
+        {
+            "text": "— [1] Wowww, that's so cool :0",
             "color": "gray",
             "click_event": {
                 "action": "run_command",
+                # This function exists so that you don't have to type out the numbers manually,
+                # and you can thank me later :^
                 "command": Narrativa.choiceCounter()
+            },
+            "hover_event": {
+                "action": "show_text",
+                "value": [
+                    {
+                        # You can do like, descriptions and stuff, but that's just
+                        # generic Json tellraw.
+                        "text": "False flattery. Classic."
+                    }
+                ]
             }
         },
         {
-            "text": "\n— [2] Could you explain it a bit more?",
+            "text": "\n"
+        },
+        {
+            "text": "— [2] Cheese.",
             "color": "gray",
             "click_event": {
                 "action": "run_command",
                 "command": Narrativa.choiceCounter()
+            },
+            "hover_event": {
+                "action": "show_text",
+                "value": [
+                    {
+                        "text": "I... honestly don't remember putting this in. O_o"
+                    }
+                ]
+            }
+        },
+        {
+            "text": "\n"
+        },
+        {
+            "text": "— [3] Could you explain it a bit more?",
+            "color": "gray",
+            "click_event": {
+                "action": "run_command",
+                "command": Narrativa.choiceCounter()
+            },
+            "hover_event": {
+                "action": "show_text",
+                "value": [
+                    {
+                        "text": "Nerd."
+                    }
+                ]
             }
         }
     ]
-    Narrativa.lockChoice([
-        {"function": "ceevyte:dialogues/example/hello_world/cool"},
-        {"function": "ceevyte:dialogues/example/hello_world/explain"}
-    ])
+    Narrativa.lockChoice(
+        [
+            # [1]
+            {
+                "function": "ceevyte:dialogues/example/hello_world/that_s_so_cool"
+            },
+            # [2]
+            {
+                "function": "ceevyte:dialogues/example/hello_world/cheese"
+            },
+            # [3]
+            {
+                "function": "ceevyte:dialogues/example/hello_world/could_you_explain"
+            }
+        ]
+    )
 ```
+*Note: Each "function" parameter in `lockChoice` correlates to the according choice option. This can be any function.*
 
 ---
 
-## ❓ Frequently Asked Questions
+## ❓ Commonly Asked Questions
 
-<details>
-<summary><strong>Q: Do I really need to load the narrativa.bolt as a module?</strong></summary>
+**Q: Do I really need to load the `narrativa.bolt` as a module?**
+> **A:** Yes, the `narrativa.bolt` is the Library module itself, and is required to be loaded by beet, preferably before the `narrativa_content` modules.
 
-**A:** Yes, the `narrativa.bolt` is the Library module itself, and is required to be loaded by Beet, preferably before the narrativa_content modules.
-</details>
+**Q: Why is there code instead of just `.mcfunction`?**
+> **A:** Beet.
 
-<details>
-<summary><strong>Q: Why is there code instead of just .mcfunction?</strong></summary>
+**Q: Can I rewrite your stupid code and make a better one?**
+> **A:** PLEASE DO.
 
-**A:** Beet provides powerful features that plain .mcfunction doesn't have, like module system, macros, and better organization.
-</details>
+**Q: How do I install Beet properly?**
+> **A:** [https://www.youtube.com/watch?v=IOS-OnqE4GY](https://www.youtube.com/watch?v=IOS-OnqE4GY)
 
-<details>
-<summary><strong>Q: Can I rewrite your code and make a better one?</strong></summary>
+**Q: How to install the datapack?**
+> **A:** Either do `beet link (your world path at "../saves/")` in VSCode's console, or drag them there manually OR download the latest Release from this repository.
 
-**A:** **PLEASE DO!** This is an open-source project, and contributions are welcome. 🙏
-</details>
-
-<details>
-<summary><strong>Q: How do I install Beet properly?</strong></summary>
-
-**A:** Check out [this tutorial](https://www.youtube.com/watch?v=IOS-OnqE4GY)
-</details>
-
-<details>
-<summary><strong>Q: How to install the datapack?</strong></summary>
-
-**A:** Either use `beet link (your world path)` in VSCode, drag the build folder manually, or download the latest Release from this repository.
-</details>
-
-<details>
-<summary><strong>Q: Will it be updated further?</strong></summary>
-
-**A:** Of course! There's always room for improvement and bug fixes.
-</details>
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! If you want to improve Narrativa:
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
-
----
-
-## 📄 License
-
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🙏 Credits
-
-- Built with [Beet](https://github.com/minecraft-beet/beet)
-- Powered by [Bolt](https://github.com/mcbeet/bolt)
-- Made with ❤️ by [@ceevyte](https://github.com/ceevyte)
-
----
-
-<div align="center">
-
-**⭐ Star this repository if you find it helpful!**
-
-Made with ❤️ by [@ceevyte](https://github.com/ceevyte)
-
-</div>
+**Q: Will it be updated further?**
+> **A:** Of course, I need to fix everything here, lol.
