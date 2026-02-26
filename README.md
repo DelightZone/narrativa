@@ -43,7 +43,7 @@ Make sure it follows this structure: DialogueArray[ IndividualLine[ FirstList{ C
 After you're done with that, head over to your newly created `narrativa_content.bolt` module, import Narrativa module `import ./narrativa as Narrativa` (both should be in the same folder).
 
 Since this is an example, we'll do a simple dialogue trigger for now, but you can make your own, just call `function ceevyte:narrativa/dialogue/_/step` when it does trigger:
-`append function_tag minecraft:load {
+```append function_tag minecraft:load {
     "values": [
         "username:dialogue/load"
     ]
@@ -79,21 +79,24 @@ function username:dialogue/tick:
             scoreboard players reset @s username.dialogue.trigger
         execute unless score @s[predicate=username:dialogue/trigger] username.dialogue.trigger matches 1..:
             function ceevyte:narrativa/dialogue/_/step
-            scoreboard players set @s username.dialogue.trigger 1`
+            scoreboard players set @s username.dialogue.trigger 1
+```
 
 This will be enough for now. Next, you need to load all dialogues, choices, actions, etc.
 
 To import the YML file as a Dialogue, do this:
-`function username:dialogues/example/hello_world:
+```function username:dialogues/example/hello_world:
     Narrativa.newDialogue(Narrativa.loadDialogue(
         "dialogues/example/hello_world.yml"
-    ), "username:dialogues.example.hello_world.")`
+    ), "username:dialogues.example.hello_world.")
+```
 
 This structure is essentially this:
-`function START_FUNCTION:
+```function START_FUNCTION:
     Narrativa.newDialogue(Narrativa.loadDialogue(
         "PATH_TO_DIALOGUE_FILE.yml"
-    ), "AUTODUB_SOUND_NAME")`
+    ), "AUTODUB_SOUND_NAME")
+```
 
 Autodub is optional; works by inserting `autodub` component inside of the first list of the line, which contains an indexed sound name.
 You can also build your own interpreter: The `Narrativa.newDialogue(ArrayJSON)` just requires a valid `/tellraw` command by this structure: `[[NewDialogueLine], ..., [NewDialogueLine]]`
@@ -104,12 +107,13 @@ By running `beet build`, the dialogues should be compiled into a datapack proper
 ## Choices
 This one is a lot easier, and requires less fiddling with my awful code.
 To make a choice, you define a new starting function, just like with a dialogue's starting function:
-  `function username:choices/example/hello_world:
-    Narrativa.newChoice()`
+```function username:choices/example/hello_world:
+    Narrativa.newChoice()
+```
 Place `Narrativa.newChoice()` inside of it.
 Second command should be the `/tellraw` display of your choice. Use `click_event` to `run_command`, but instead of running an actual command, just put `Narrativa.choiceCounter()` there. It automatically generates a /trigger command, so it will work even without the cheats being on!
 After the command, you should call
-  `Narrativa.lockChoice( [
+```Narrativa.lockChoice( [
       {
       # 1st Option
       "function": "username:dialogues/example/hello_world/destination1"
@@ -118,11 +122,12 @@ After the command, you should call
       # 2nd Option
       "function": "username:actions/example/hello_world/destination2"
       }
-  ])`
+  ])
+```
 where each "function" parameter correlates to the according choice option. This can be any function.
 
 Here's an example choice:
-`function ceevyte:choices/example/hello_world:
+```function ceevyte:choices/example/hello_world:
     Narrativa.newChoice()
     tellraw @s [
         {
@@ -202,7 +207,8 @@ Here's an example choice:
                 "function": "ceevyte:dialogues/example/hello_world/could_you_explain"
             }
         ]
-    )`
+    )
+```
 
 # Commonly asked questions:
 Q: Do I really need to load the narrativa.bolt as a module?
