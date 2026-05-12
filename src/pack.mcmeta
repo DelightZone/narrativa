@@ -8,21 +8,25 @@
             "fallback": "%2$s",
             "translate": "ceevyte.narrativa.pack_translation_key",
             "with": [
-                [
-                    "",
-                    {
-                        "text": "  ✔ Narrativa  Library ✔",
-                        "color": "gray"
-                    }
-                ],
-                [
-                    "  ✘ Narrativa  Library ✘  "
-                ]
+              [
+                "",
+                {
+                  "text": "  ✔ Narrativa  Library ✔",
+                  "color": "gray"
+                }
+              ],
+              [
+                "  ✘ Narrativa  Library ✘  "
+              ]
             ]
           },
           [
             {
-                "text": "     Made by @ceevyte"
+              "text": "     Made by "
+            },
+            {
+              "text": "@ceevyte",
+              "color": "gray"
             }
           ]
         ]
