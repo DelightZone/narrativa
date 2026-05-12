@@ -45,42 +45,42 @@ function ceevyte:narrativa/load:
 ## Navigation
 
 function ceevyte:narrativa/_/advance:
-    execute unless data storage ceevyte:narrativa context.lines[0] run return fail
+    execute unless data storage ceevyte:narrativa lines[0] run return fail
     scoreboard players add @s ceevyte.narrativa.index.e 1
 
-    data modify storage ceevyte:narrativa context._lines prepend from storage ceevyte:narrativa context.lines[0]
-    execute unless data storage ceevyte:narrativa context.lines[1]:
+    data modify storage ceevyte:narrativa _lines prepend from storage ceevyte:narrativa lines[0]
+    execute unless data storage ceevyte:narrativa lines[1]:
         function ceevyte:narrativa/_/end
-    data remove storage ceevyte:narrativa context.lines[0]
+    data remove storage ceevyte:narrativa lines[0]
 
-    data modify storage ceevyte:narrativa context._actions prepend from storage ceevyte:narrativa context.actions[0]
-    data remove storage ceevyte:narrativa context.actions[0]
+    data modify storage ceevyte:narrativa _actions prepend from storage ceevyte:narrativa actions[0]
+    data remove storage ceevyte:narrativa actions[0]
 
     function #ceevyte:narrativa/show
 
 function ceevyte:narrativa/_/rewind:
-    execute unless data storage ceevyte:narrativa context.lines[0] run return fail
+    execute unless data storage ceevyte:narrativa lines[0] run return fail
 
     scoreboard players remove @s ceevyte.narrativa.index.e 1
-    data modify storage ceevyte:narrativa context.lines prepend from storage ceevyte:narrativa context._lines[0]
-    execute unless data storage ceevyte:narrativa context._lines[0]:
+    data modify storage ceevyte:narrativa lines prepend from storage ceevyte:narrativa _lines[0]
+    execute unless data storage ceevyte:narrativa _lines[0]:
         function ceevyte:narrativa/_/end
-    data remove storage ceevyte:narrativa context._lines[0]
+    data remove storage ceevyte:narrativa _lines[0]
 
-    data modify storage ceevyte:narrativa context.actions prepend from storage ceevyte:narrativa context._actions[0]
-    data remove storage ceevyte:narrativa context._actions[0]
+    data modify storage ceevyte:narrativa actions prepend from storage ceevyte:narrativa _actions[0]
+    data remove storage ceevyte:narrativa _actions[0]
 
     function #ceevyte:narrativa/show
 
 function ceevyte:narrativa/_/end:
     scoreboard players reset @s ceevyte.narrativa.index.e
 
-    data remove storage ceevyte:narrativa context.lines
-    data remove storage ceevyte:narrativa context._lines
-    data remove storage ceevyte:narrativa context.actions
-    data remove storage ceevyte:narrativa context._actions
+    data remove storage ceevyte:narrativa lines
+    data remove storage ceevyte:narrativa _lines
+    data remove storage ceevyte:narrativa actions
+    data remove storage ceevyte:narrativa _actions
 
-    data remove storage ceevyte:narrativa context.autodub
+    data remove storage ceevyte:narrativa autodub
 
     function #ceevyte:narrativa/end
 
@@ -99,17 +99,17 @@ def new_dialogue(
     function ceevyte:narrativa/_/start
     scoreboard players set @s ceevyte.narrativa.index.e 0
 
-    data remove storage ceevyte:narrativa context._lines
-    data modify storage ceevyte:narrativa context.lines set value lines
-    data modify storage ceevyte:narrativa context.lines prepend value ""
+    data remove storage ceevyte:narrativa _lines
+    data modify storage ceevyte:narrativa "lines" set value lines
+    data modify storage ceevyte:narrativa "lines" prepend value ""
 
-    data remove storage ceevyte:narrativa context._actions
-    data modify storage ceevyte:narrativa context.actions set value actions
-    data modify storage ceevyte:narrativa context.actions prepend value ""
+    data remove storage ceevyte:narrativa _actions
+    data modify storage ceevyte:narrativa "actions" set value actions
+    data modify storage ceevyte:narrativa "actions" prepend value ""
 
     if autodub:
-        data modify storage ceevyte:narrativa context.autodub set value autodub
+        data modify storage ceevyte:narrativa "autodub" set value autodub
 
     function ceevyte:narrativa/_/advance
-    data remove storage ceevyte:narrativa context._lines[-1]
-    data remove storage ceevyte:narrativa context._actions[-1]
+    data remove storage ceevyte:narrativa _lines[-1]
+    data remove storage ceevyte:narrativa _actions[-1]

@@ -70,40 +70,40 @@ function ceevyte:narrativa/main/end:
 ## Display
 
 function ceevyte:narrativa/main/show:
-    bossbar set ceevyte:narrativa/line1 name {"nbt": "context.lines[0][0]", "storage": "ceevyte:narrativa","interpret":true}
-    bossbar set ceevyte:narrativa/line2 name {"nbt": "context.lines[0][1]", "storage": "ceevyte:narrativa","interpret":true}
-    bossbar set ceevyte:narrativa/line3 name {"nbt": "context.lines[0][2]", "storage": "ceevyte:narrativa","interpret":true}
+    bossbar set ceevyte:narrativa/line1 name {"nbt": "lines[0][0]", "storage": "ceevyte:narrativa","interpret":true}
+    bossbar set ceevyte:narrativa/line2 name {"nbt": "lines[0][1]", "storage": "ceevyte:narrativa","interpret":true}
+    bossbar set ceevyte:narrativa/line3 name {"nbt": "lines[0][2]", "storage": "ceevyte:narrativa","interpret":true}
 
     execute:
-        data modify storage ceevyte:narrativa context.foo set from storage ceevyte:narrativa context.lines[0][2]
-        execute if data storage ceevyte:narrativa context.foo unless data storage ceevyte:narrativa {context:{foo: ""}} run return:
-            data modify storage ceevyte:narrativa context.bar set value "\uE002"
+        data modify storage ceevyte:narrativa foo set from storage ceevyte:narrativa lines[0][2]
+        execute if data storage ceevyte:narrativa foo unless data storage ceevyte:narrativa {foo: ""} run return:
+            data modify storage ceevyte:narrativa bar set value "\uE002"
 
-        data modify storage ceevyte:narrativa context.foo set from storage ceevyte:narrativa context.lines[0][1]
-        execute if data storage ceevyte:narrativa context.foo unless data storage ceevyte:narrativa {context:{foo: ""}} run return:
-            data modify storage ceevyte:narrativa context.bar set value "\uE001"
+        data modify storage ceevyte:narrativa foo set from storage ceevyte:narrativa lines[0][1]
+        execute if data storage ceevyte:narrativa foo unless data storage ceevyte:narrativa {foo: ""} run return:
+            data modify storage ceevyte:narrativa bar set value "\uE001"
 
-        data modify storage ceevyte:narrativa context.foo set from storage ceevyte:narrativa context.lines[0][0]
-        execute if data storage ceevyte:narrativa context.foo unless data storage ceevyte:narrativa {context:{foo: ""}}:
-            data modify storage ceevyte:narrativa context.bar set value "\uE000"
+        data modify storage ceevyte:narrativa foo set from storage ceevyte:narrativa lines[0][0]
+        execute if data storage ceevyte:narrativa foo unless data storage ceevyte:narrativa {foo: ""}:
+            data modify storage ceevyte:narrativa bar set value "\uE000"
 
-    bossbar set ceevyte:narrativa/header name {"nbt": "context.bar", "storage": "ceevyte:narrativa", "font":"ceevyte:narrativa/header", "shadow_color":0}
-    data remove storage ceevyte:narrativa context.bar
+    bossbar set ceevyte:narrativa/header name {"nbt": "bar", "storage": "ceevyte:narrativa", "font":"ceevyte:narrativa/header", "shadow_color":0}
+    data remove storage ceevyte:narrativa bar
 
-    data modify storage ceevyte:narrativa context.foo set from storage ceevyte:narrativa context.actions[0]
-    execute if data storage ceevyte:narrativa context.foo unless data storage ceevyte:narrativa {context:{foo: ""}} run function ceevyte:narrativa/run_action with storage ceevyte:narrativa context
+    data modify storage ceevyte:narrativa foo set from storage ceevyte:narrativa actions[0]
+    execute if data storage ceevyte:narrativa foo unless data storage ceevyte:narrativa {foo: ""} run function ceevyte:narrativa/run_action with storage ceevyte:narrativa context
     function ceevyte:narrativa/run_action:
         $$(foo)
 
-    data remove storage ceevyte:narrativa context.foo
+    data remove storage ceevyte:narrativa foo
 
-    execute if data storage ceevyte:narrativa context.autodub:
+    execute if data storage ceevyte:narrativa autodub:
         scoreboard players remove @s ceevyte.narrativa.index.e 1
-        execute store result storage ceevyte:narrativa context.foo int 1 run scoreboard players get @s ceevyte.narrativa.index.e
+        execute store result storage ceevyte:narrativa foo int 1 run scoreboard players get @s ceevyte.narrativa.index.e
         scoreboard players add @s ceevyte.narrativa.index.e 1
-        execute store result storage ceevyte:narrativa context.bar int 1 run scoreboard players get @s ceevyte.narrativa.index.e
+        execute store result storage ceevyte:narrativa bar int 1 run scoreboard players get @s ceevyte.narrativa.index.e
         scoreboard players add @s ceevyte.narrativa.index.e 1
-        execute store result storage ceevyte:narrativa context.baz int 1 run scoreboard players get @s ceevyte.narrativa.index.e
+        execute store result storage ceevyte:narrativa baz int 1 run scoreboard players get @s ceevyte.narrativa.index.e
         scoreboard players remove @s ceevyte.narrativa.index.e 1
 
         function ceevyte:narrativa/autodub with storage ceevyte:narrativa context
@@ -112,9 +112,9 @@ function ceevyte:narrativa/main/show:
             $playsound $(autodub)$(bar) voice @s ~ ~ ~ 2147483647 1 1
             $stopsound @s voice $(autodub)$(baz)
 
-    data remove storage ceevyte:narrativa context.foo
-    data remove storage ceevyte:narrativa context.bar
-    data remove storage ceevyte:narrativa context.baz
+    data remove storage ceevyte:narrativa foo
+    data remove storage ceevyte:narrativa bar
+    data remove storage ceevyte:narrativa baz
 
 function ceevyte:narrativa/dialogue/example:
     Narrativa.new_dialogue(
