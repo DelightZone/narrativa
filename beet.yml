@@ -1,0 +1,26 @@
+name: narrativa
+
+require:
+  - bolt
+
+pipeline:
+  - mecha
+
+data_pack:
+  load:
+    - src
+
+resource_pack:
+  load:
+    - src
+
+output: build
+
+meta:
+  bolt:
+    entrypoint: [
+      "ceevyte:narrativa",
+      "ceevyte:narrativa/example_usage",
+
+      "ceevyte:storage_stockman"
+    ]

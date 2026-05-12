@@ -1,0 +1,115 @@
+## Tags
+
+append function_tag minecraft:load {
+    "values": [
+        "ceevyte:narrativa/load"
+    ]
+}
+
+
+## Predicates
+
+predicate ceevyte:narrativa/sneak {
+    "condition": "minecraft:entity_properties",
+    "entity": "this",
+    "predicate": {
+        "type_specific": {
+            "type": "minecraft:player",
+            "input": {
+                "sneak": true
+            }
+        }
+    }
+}
+
+predicate ceevyte:narrativa/sprint {
+    "condition": "minecraft:entity_properties",
+    "entity": "this",
+    "predicate": {
+        "type_specific": {
+            "type": "minecraft:player",
+            "input": {
+                "sprint": true
+            }
+        }
+    }
+}
+
+
+## General
+
+function ceevyte:narrativa/load:
+    scoreboard objectives add ceevyte.narrativa.index.e dummy {"text": "Dialogue Index", "color": "gold"}
+
+
+## Navigation
+
+function ceevyte:narrativa/_/advance:
+    execute unless data storage ceevyte:narrativa context.lines[0] run return fail
+    scoreboard players add @s ceevyte.narrativa.index.e 1
+
+    data modify storage ceevyte:narrativa context._lines prepend from storage ceevyte:narrativa context.lines[0]
+    execute unless data storage ceevyte:narrativa context.lines[1]:
+        function ceevyte:narrativa/_/end
+    data remove storage ceevyte:narrativa context.lines[0]
+
+    data modify storage ceevyte:narrativa context._actions prepend from storage ceevyte:narrativa context.actions[0]
+    data remove storage ceevyte:narrativa context.actions[0]
+
+    function #ceevyte:narrativa/show
+
+function ceevyte:narrativa/_/rewind:
+    execute unless data storage ceevyte:narrativa context.lines[0] run return fail
+
+    scoreboard players remove @s ceevyte.narrativa.index.e 1
+    data modify storage ceevyte:narrativa context.lines prepend from storage ceevyte:narrativa context._lines[0]
+    execute unless data storage ceevyte:narrativa context._lines[0]:
+        function ceevyte:narrativa/_/end
+    data remove storage ceevyte:narrativa context._lines[0]
+
+    data modify storage ceevyte:narrativa context.actions prepend from storage ceevyte:narrativa context._actions[0]
+    data remove storage ceevyte:narrativa context._actions[0]
+
+    function #ceevyte:narrativa/show
+
+function ceevyte:narrativa/_/end:
+    scoreboard players reset @s ceevyte.narrativa.index.e
+
+    data remove storage ceevyte:narrativa context.lines
+    data remove storage ceevyte:narrativa context._lines
+    data remove storage ceevyte:narrativa context.actions
+    data remove storage ceevyte:narrativa context._actions
+
+    data remove storage ceevyte:narrativa context.autodub
+
+    function #ceevyte:narrativa/end
+
+function ceevyte:narrativa/_/start:
+    function #ceevyte:narrativa/end
+    function #ceevyte:narrativa/start
+
+
+## API
+
+def new_dialogue(
+    lines=[],
+    actions=[],
+    autodub=""
+):
+    function ceevyte:narrativa/_/start
+    scoreboard players set @s ceevyte.narrativa.index.e 0
+
+    data remove storage ceevyte:narrativa context._lines
+    data modify storage ceevyte:narrativa context.lines set value lines
+    data modify storage ceevyte:narrativa context.lines prepend value ""
+
+    data remove storage ceevyte:narrativa context._actions
+    data modify storage ceevyte:narrativa context.actions set value actions
+    data modify storage ceevyte:narrativa context.actions prepend value ""
+
+    if autodub:
+        data modify storage ceevyte:narrativa context.autodub set value autodub
+
+    function ceevyte:narrativa/_/advance
+    data remove storage ceevyte:narrativa context._lines[-1]
+    data remove storage ceevyte:narrativa context._actions[-1]

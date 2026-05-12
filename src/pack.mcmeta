@@ -1,0 +1,39 @@
+{
+  "pack": {
+    "description": [
+      {
+        "translate": "%1$s\n%2$s",
+        "with": [
+          {
+            "fallback": "%2$s",
+            "translate": "ceevyte.narrativa.pack_translation_key",
+            "with": [
+                [
+                    "",
+                    {
+                        "text": "  ✔ Narrativa  Library ✔",
+                        "color": "gray"
+                    }
+                ],
+                [
+                    "  ✘ Narrativa  Library ✘  "
+                ]
+            ]
+          },
+          [
+            {
+                "text": "     Made by @ceevyte"
+            }
+          ]
+        ]
+      }
+    ],
+    "pack_format":69,
+    "min_format":69,
+    "max_format":84,
+    "supported_formats":[
+      69,
+      84
+    ]
+  }
+}
