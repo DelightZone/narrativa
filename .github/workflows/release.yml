@@ -16,21 +16,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node (example)
-        uses: actions/setup-node@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          node-version: 20
+          python-version: '3.12.3'
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
       - name: Run tests
-        run: npm test
+        run: |
+          pytest
 
-      - name: Build project
-        run: npm run build
+      - name: Build package (optional)
+        run: |
+          python -m build
 
-      - name: Package build output
+      - name: Package release
         run: |
           mkdir dist-package
           cp -r dist/* dist-package/
