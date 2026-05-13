@@ -1,0 +1,46 @@
+import ceevyte:narrativa as Narrativa
+
+function username:dialogue/example/exchange:
+    Narrativa.new_dialogue(
+        lines=[
+            [
+                'Alex: "You don\'t look like you\'re from around here."'
+            ],
+            [
+                'Steve: "I came here from Newton."'
+            ],
+            [
+                'Alex: "Newton, eh?',
+                'I heard there\'s trouble brewing down there."'
+            ],
+            [
+                'Steve: "Did I say Newton?',
+                'I\'m actually from Springville."'
+            ],
+            [
+                'Alex: "Oh really?',
+                'Then you must know Mr. Bowler."'
+            ],
+            [
+                'Steve: "Who?"'
+            ],
+            [
+                'Alex: "Don\'t you worry about it.',
+                'Say, do you have something to eat?'
+            ],
+            [
+                'I\'m starving."'
+            ]
+        ],
+        actions=[
+            "",
+            "say Newton is a city, btw.",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        autodub="username:dialogue.example.exchange."
+    )

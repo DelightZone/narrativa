@@ -20,7 +20,7 @@ meta:
   bolt:
     entrypoint: [
       "ceevyte:narrativa",
-      "ceevyte:narrativa/example_usage",
 
-      "ceevyte:storage_stockman"
+      "username:example",
+      "username:example/narrativa/handler"
     ]

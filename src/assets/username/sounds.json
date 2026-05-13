@@ -1,0 +1,10 @@
+{
+    "dialogue.example.exchange.1": { "sounds": [ "username:dialogue/example/exchange/1" ] },
+    "dialogue.example.exchange.2": { "sounds": [ "username:dialogue/example/exchange/2" ] },
+    "dialogue.example.exchange.3": { "sounds": [ "username:dialogue/example/exchange/3" ] },
+    "dialogue.example.exchange.4": { "sounds": [ "username:dialogue/example/exchange/4" ] },
+    "dialogue.example.exchange.5": { "sounds": [ "username:dialogue/example/exchange/5" ] },
+    "dialogue.example.exchange.6": { "sounds": [ "username:dialogue/example/exchange/6" ] },
+    "dialogue.example.exchange.7": { "sounds": [ "username:dialogue/example/exchange/7" ] },
+    "dialogue.example.exchange.8": { "sounds": [ "username:dialogue/example/exchange/8" ] }
+}

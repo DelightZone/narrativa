@@ -7,35 +7,6 @@ append function_tag minecraft:load {
 }
 
 
-## Predicates
-
-predicate ceevyte:narrativa/sneak {
-    "condition": "minecraft:entity_properties",
-    "entity": "this",
-    "predicate": {
-        "type_specific": {
-            "type": "minecraft:player",
-            "input": {
-                "sneak": true
-            }
-        }
-    }
-}
-
-predicate ceevyte:narrativa/sprint {
-    "condition": "minecraft:entity_properties",
-    "entity": "this",
-    "predicate": {
-        "type_specific": {
-            "type": "minecraft:player",
-            "input": {
-                "sprint": true
-            }
-        }
-    }
-}
-
-
 ## General
 
 function ceevyte:narrativa/load:

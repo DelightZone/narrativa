@@ -9,7 +9,7 @@ A flexible dialogue engine which I use in my projects.
 
 ## Usage example
 
-Literally [this](src/data/ceevyte/modules/narrativa/example_usage.bolt) file whole. Make your own stuff freely, why not?
+Literally [this](src/data/username/modules/example/narrativa/handler.bolt) file as a whole. Make your own stuff freely, why not?
 
 ## Development setup
 

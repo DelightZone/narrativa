@@ -2,7 +2,7 @@
     "providers": [
         {
             "type": "bitmap",
-            "file": "ceevyte:font/narrativa/speech_bubble.png",
+            "file": "username:font/example/narrativa/speech_bubble.png",
             "height": 10,
             "ascent": 8,
             "chars": [
@@ -12,7 +12,7 @@
 
         {
             "type": "bitmap",
-            "file": "ceevyte:font/narrativa/background.png",
+            "file": "username:font/example/narrativa/background.png",
             "height": 25,
             "ascent": -3,
             "chars": [
@@ -21,7 +21,7 @@
         },
         {
             "type": "bitmap",
-            "file": "ceevyte:font/narrativa/background.png",
+            "file": "username:font/example/narrativa/background.png",
             "height": 44,
             "ascent": -3,
             "chars": [
@@ -30,7 +30,7 @@
         },
         {
             "type": "bitmap",
-            "file": "ceevyte:font/narrativa/background.png",
+            "file": "username:font/example/narrativa/background.png",
             "height": 63,
             "ascent": -3,
             "chars": [
