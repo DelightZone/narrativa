@@ -46,6 +46,9 @@ function ceevyte:narrativa/dialog/rewind:
 function ceevyte:narrativa/dialog/end:
     scoreboard players reset /dialog/index ceevyte.narrativa.g
 
+    data remove storage ceevyte:narrativa foo
+    data remove storage ceevyte:narrativa bar
+
     data remove storage ceevyte:narrativa lines
     data remove storage ceevyte:narrativa _lines
     data remove storage ceevyte:narrativa actions
@@ -62,18 +65,22 @@ function ceevyte:narrativa/dialog/start:
 
 ## Choice system
 
-function ceevyte:narrativa/choice/_/pick:
-    execute store result storage ceevyte:narrativa bar int 1 run scoreboard players get /choice/option ceevyte.narrativa.g
-    function ceevyte:narrativa/choice/pick with storage ceevyte:narrativa
-    function ceevyte:narrativa/choice/pick:
+function ceevyte:narrativa/choice/pick:
+    execute store result storage ceevyte:narrativa bar int 1 run scoreboard players get /choice/index ceevyte.narrativa.g
+    function ceevyte:narrativa/choice/store with storage ceevyte:narrativa
+    function ceevyte:narrativa/choice/store:
         $data modify storage ceevyte:narrativa foo set from storage ceevyte:narrativa options[$(bar)]
+    
+    execute if data storage ceevyte:narrativa foo unless data storage ceevyte:narrativa {foo:""} run function ceevyte:narrativa/choice/resolve
+    data remove storage ceevyte:narrativa foo
+    data remove storage ceevyte:narrativa bar
+
+function ceevyte:narrativa/choice/resolve:
     function ceevyte:narrativa/choice/run with storage ceevyte:narrativa
     function ceevyte:narrativa/choice/run:
         $$(foo)
     
-    data remove storage ceevyte:narrativa foo
-    data remove storage ceevyte:narrativa bar
-    data remove storage ceevyte:narrativa options
+    scoreboard players reset /choice/index ceevyte.narrativa.g
 
 ## API
 
@@ -106,21 +113,21 @@ class new_choice:
         objective="none"
     ):
         self.objective = objective
-        self.choices = []
+        self.choices = [""]
 
-    def add_choice(
+    def option(
         self,
-        action=""
+        option=""
     ):
-        self._append_choice(action)
-        trigger self.objective set len(self.choices)
+        self._append_option(option)
+        return f"trigger {self.objective} set {len(self.choices) - 1}"
 
-    def _append_choice(
+    def _append_option(
         self,
-        action=""
+        option=""
     ):
-        self.choices.append(action)
+        self.choices.append(option)
 
     def flush(self):
         data modify storage ceevyte:narrativa options set value self.choices
-        self.choices = []
+        self.choices = [""]

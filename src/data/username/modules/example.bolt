@@ -1,48 +1,227 @@
 import ceevyte:narrativa as Narrativa
+from ceevyte:narrativa import new_dialog
 
-new_choice = Narrativa.new_choice("username.example.narrativa.")
+choice = Narrativa.new_choice("username.example.narrativa.choice.index.e")
 
-function username:dialog/example/exchange:
-    Narrativa.new_dialog(
+function username:dialog/example/dialog_tree_example:
+    new_dialog(
         lines=[
             [
-                'Alex: "You don\'t look like you\'re from around here."'
+                'Alex: "You don\'t look like you\'re',
+                'from around here."'
             ],
             [
-                'Steve: "I came here from Newton."'
-            ],
-            [
-                'Alex: "Newton, eh?',
-                'I heard there\'s trouble brewing down there."'
-            ],
-            [
-                'Steve: "Did I say Newton?',
-                'I\'m actually from Springville."'
-            ],
-            [
-                'Alex: "Oh really?',
-                'Then you must know Mr. Bowler."'
-            ],
-            [
-                'Steve: "Who?"'
-            ],
-            [
-                'Alex: "Don\'t you worry about it.',
-                'Say, do you have something to eat?'
-            ],
-            [
-                'I\'m starving."'
+                ''
             ]
         ],
         actions=[
             "",
-            "say Newton is a city, btw.",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
+            "function username:choice/example/dialog_tree_example"
         ],
-        autodub="username:dialog.example.exchange."
+        autodub="username:dialog.example.dialog_tree_example."
     )
+
+function username:choice/example/dialog_tree_example:
+    scoreboard players enable @a username.example.narrativa.choice.index.e
+    tellraw @a [
+        "", {
+            "text": "\n\n\n\nExample Choice Menu:",
+            "color": "gray"
+        },
+
+        {
+            "text": "\n1. I've lived here all my life!",
+            "click_event": {
+                "action":  "run_command",
+                "command": choice.option("function username:dialog/example/dialog_tree_example/my_life")
+            }
+        },
+        {
+            "text": "\n2. I came here from Newton.",
+            "click_event": {
+                "action":  "run_command",
+                "command": choice.option("function username:dialog/example/dialog_tree_example/i_came")
+            }
+        }
+    ]
+
+    choice.flush()
+
+function username:dialog/example/dialog_tree_example/don_t_worry:
+    new_dialog(
+        lines=[
+            [
+                'Steve: "Who?"'
+            ],
+            [
+                'Alex: "Don\'t worry about it. Say,',
+                'do you have something to eat?',
+                'I\'m starving."'
+            ]
+        ],
+        autodub="username:dialog.example.dialog_tree_example.don_t_worry."
+    )
+
+function username:dialog/example/dialog_tree_example/my_life:
+    new_dialog(
+        lines=[
+            [
+                'Steve: "I\'ve lived here all my life!"'
+            ],
+            [
+                'Alex: "Oh really? Then you must',
+                'know Mr. Bowler."'
+            ],
+            [
+                ''
+            ]
+        ],
+        actions=[
+            "",
+            "",
+            "function username:choice/example/dialog_tree_example/my_life"
+        ],
+        autodub="username:dialog.example.dialog_tree_example.my_life."
+    )
+
+function username:dialog/example/dialog_tree_example/i_came:
+    new_dialog(
+        lines=[
+            [
+                'Steve: "I came here from Newton."'
+            ],
+            [
+                'Alex: "Newton, eh? I heard there\'s',
+                'trouble brewing down there."'
+            ],
+            [
+                ''  
+            ]
+        ],
+        actions=[
+            "",
+            "",
+            "function username:choice/example/dialog_tree_example/i_came"
+        ],
+        autodub="username:dialog.example.dialog_tree_example.i_came."
+    )
+
+function username:choice/example/dialog_tree_example/my_life:
+    scoreboard players enable @a username.example.narrativa.choice.index.e
+    tellraw @a [
+        "", {
+            "text": "\n\n\n\nExample Choice Menu:",
+            "color": "gray"
+        },
+
+        {
+            "text": "\n1. Mr. Bowler is a good friend of mine!",
+            "click_event": {
+                "action":  "run_command",
+                "command": choice.option("function username:dialog/example/dialog_tree_example/my_life/good_friend")
+            }
+        },
+        {
+            "text": "\n2. Who?",
+            "click_event": {
+                "action":  "run_command",
+                "command": choice.option("function username:dialog/example/dialog_tree_example/my_life/who_")
+            }
+        }
+    ]
+
+    choice.flush()
+
+function username:choice/example/dialog_tree_example/i_came:
+    scoreboard players enable @a username.example.narrativa.choice.index.e
+    tellraw @a [
+        "", {
+            "text": "\n\n\n\nExample Choice Menu:",
+            "color": "gray"
+        },
+
+        {
+            "text": "\n1. I haven't heard about any trouble.",
+            "click_event": {
+                "action":  "run_command",
+                "command": choice.option("function username:dialog/example/dialog_tree_example/i_came/haven_t_heard")
+            }
+        },
+        {
+            "text": "\n2. Did I say Newton? I'm actually from Springville.",
+            "click_event": {
+                "action":  "run_command",
+                "command": choice.option("function username:dialog/example/dialog_tree_example/i_came/actually_from")
+            }
+        }
+    ]
+
+    choice.flush()
+
+function username:dialog/example/dialog_tree_example/i_came/haven_t_heard:
+    new_dialog(
+        lines=[
+            [
+                'Steve: "I haven\'t heard about any trouble."'
+            ],
+            [
+                'Alex: "Don\'t you worry about it. Say,',
+                'do you have something to eat?',
+                'I\'m starving."'
+            ]
+        ],
+        autodub="username:dialog.example.dialog_tree_example.i_came.haven_t_heard."
+    )
+
+function username:dialog/example/dialog_tree_example/i_came/actually_from:
+    new_dialog(
+        lines=[
+            [
+                'Steve: "Did I say Newton? I\'m actually from Springville."'
+            ],
+            [
+                'Alex: "Oh really? Then you must',
+                'know Mr. Bowler."'
+            ],
+            [
+                ''  
+            ]
+        ],
+        actions=[
+            "",
+            "",
+            "function username:choice/example/dialog_tree_example/my_life"
+        ],
+        autodub="username:dialog.example.dialog_tree_example.i_came.actually_from."
+    )
+
+
+function username:dialog/example/dialog_tree_example/my_life/good_friend:
+    new_dialog(
+        lines=[
+            [
+                'Steve: "Mr. Bowler is a good friend of mine!"'
+            ],
+            [
+                'Alex: "You liar! There ain\'t no',
+                'Mr. Bowler, I made him up!"'
+            ]
+        ],
+        autodub="username:dialog.example.dialog_tree_example.my_life.good_friend."
+    )
+
+function username:dialog/example/dialog_tree_example/my_life/who_:
+    new_dialog(
+        lines=[
+            [
+                'Steve: "Who?"'
+            ],
+            [
+                'Alex: "Don\'t you worry about it. Say,',
+                'do you have something to eat?',
+                'I\'m starving."'
+            ]
+        ],
+        autodub="username:dialog.example.dialog_tree_example.my_life.good_friend."
+    )
+

@@ -67,6 +67,8 @@ function username:example/narrativa/load:
     scoreboard objectives add username.example.narrativa.sneak.e dummy {"text": "Sneak Toggle", "color": "gold"}
     scoreboard objectives add username.example.narrativa.sprint.e dummy {"text": "Sprint Toggle", "color": "gold"}
 
+    scoreboard objectives add username.example.narrativa.choice.index.e trigger {"text": "Choice Index", "color": "white"}
+
     bossbar add username:example/narrativa/header "Header"
     bossbar add username:example/narrativa/line1 "Line 1"
     bossbar add username:example/narrativa/line2 "Line 2"
@@ -100,14 +102,11 @@ function username:example/narrativa/tick:
 
         ## Choice
 
-        execute unless score @s ceevyte.narrativa.option.e matches ..-1:
-            execute if score @s ceevyte.narrativa.option.e matches 0..:
-                tellraw @a [{"selector": "@s"}," ",{"text": "chose: "},{"score": {"name": "@s", "objective":"ceevyte.narrativa.option.e"}}]
-            scoreboard players reset @s ceevyte.narrativa.option.e
-        
-function username:example/narrativa/choice/enable:
-    scoreboard players enable @s ceevyte.narrativa.option.e
-    scoreboard players set @s ceevyte.narrativa.option.e -1
+        execute if score @s username.example.narrativa.choice.index.e matches 1..:
+            scoreboard players operation /choice/index ceevyte.narrativa.g = @s username.example.narrativa.choice.index.e
+            function ceevyte:narrativa/choice/pick
+            scoreboard players reset /choice/index ceevyte.narrativa.g
+            scoreboard players reset @a username.example.narrativa.choice.index.e
 
 function username:example/narrativa/start:
     bossbar set username:example/narrativa/header players @a
@@ -129,6 +128,7 @@ function username:example/narrativa/show:
     bossbar set username:example/narrativa/line2 name {"nbt": "lines[0][1]", "storage": "ceevyte:narrativa","interpret":true}
     bossbar set username:example/narrativa/line3 name {"nbt": "lines[0][2]", "storage": "ceevyte:narrativa","interpret":true}
 
+    data remove storage ceevyte:narrativa foo
     execute:
         data modify storage ceevyte:narrativa foo set from storage ceevyte:narrativa lines[0][2]
         execute if data storage ceevyte:narrativa foo unless data storage ceevyte:narrativa {foo: ""} run return:
