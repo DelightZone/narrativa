@@ -47,27 +47,26 @@ function username:choice/example/dialog_tree_example:
 
     choice.flush()
 
-function username:dialog/example/dialog_tree_example/don_t_worry:
-    new_dialog(
-        lines=[
-            [
-                'Steve: "Who?"'
-            ],
-            [
-                'Alex: "Don\'t worry about it. Say,',
-                'do you have something to eat?',
-                'I\'m starving."'
-            ]
-        ],
-        autodub="username:dialog.example.dialog_tree_example.don_t_worry."
-    )
-
 function username:dialog/example/dialog_tree_example/my_life:
     new_dialog(
         lines=[
             [
                 'Steve: "I\'ve lived here all my life!"'
             ],
+            [
+                ''
+            ]
+        ],
+        actions=[
+            "",
+            "function username:dialog/example/dialog_tree_example/oh_really"
+        ],
+        autodub="username:dialog.example.dialog_tree_example.my_life."
+    )
+
+function username:dialog/example/dialog_tree_example/oh_really:
+    new_dialog(
+        lines=[
             [
                 'Alex: "Oh really? Then you must',
                 'know Mr. Bowler."'
@@ -78,10 +77,9 @@ function username:dialog/example/dialog_tree_example/my_life:
         ],
         actions=[
             "",
-            "",
-            "function username:choice/example/dialog_tree_example/my_life"
+            "function username:choice/example/dialog_tree_example/oh_really"
         ],
-        autodub="username:dialog.example.dialog_tree_example.my_life."
+        autodub="username:dialog.example.dialog_tree_example.oh_really."
     )
 
 function username:dialog/example/dialog_tree_example/i_came:
@@ -106,7 +104,7 @@ function username:dialog/example/dialog_tree_example/i_came:
         autodub="username:dialog.example.dialog_tree_example.i_came."
     )
 
-function username:choice/example/dialog_tree_example/my_life:
+function username:choice/example/dialog_tree_example/oh_really:
     scoreboard players enable @a username.example.narrativa.choice.index.e
     tellraw @a [
         "", {
@@ -165,10 +163,12 @@ function username:dialog/example/dialog_tree_example/i_came/haven_t_heard:
                 'Steve: "I haven\'t heard about any trouble."'
             ],
             [
-                'Alex: "Don\'t you worry about it. Say,',
-                'do you have something to eat?',
-                'I\'m starving."'
+                ''
             ]
+        ],
+        actions=[
+            "",
+            "function username:dialog/example/dialog_tree_example/don_t_worry"
         ],
         autodub="username:dialog.example.dialog_tree_example.i_came.haven_t_heard."
     )
@@ -180,17 +180,12 @@ function username:dialog/example/dialog_tree_example/i_came/actually_from:
                 'Steve: "Did I say Newton? I\'m actually from Springville."'
             ],
             [
-                'Alex: "Oh really? Then you must',
-                'know Mr. Bowler."'
-            ],
-            [
                 ''  
             ]
         ],
         actions=[
             "",
-            "",
-            "function username:choice/example/dialog_tree_example/my_life"
+            "function username:dialog/example/dialog_tree_example/oh_really"
         ],
         autodub="username:dialog.example.dialog_tree_example.i_came.actually_from."
     )
@@ -217,11 +212,25 @@ function username:dialog/example/dialog_tree_example/my_life/who_:
                 'Steve: "Who?"'
             ],
             [
+                ''
+            ]
+        ],
+        actions=[
+            "",
+            "function username:dialog/example/dialog_tree_example/don_t_worry"
+        ],
+        autodub="username:dialog.example.dialog_tree_example.my_life.who_."
+    )
+
+function username:dialog/example/dialog_tree_example/don_t_worry:
+    new_dialog(
+        lines=[
+            [
                 'Alex: "Don\'t you worry about it. Say,',
                 'do you have something to eat?',
                 'I\'m starving."'
             ]
         ],
-        autodub="username:dialog.example.dialog_tree_example.my_life.good_friend."
+        autodub="username:dialog.example.dialog_tree_example.don_t_worry."
     )
 
