@@ -22,5 +22,7 @@ meta:
       "ceevyte:narrativa",
 
       "username:example",
-      "username:example/narrativa/handler"
+      "username:example/narrativa/handler",
+
+      "username:finish"
     ]

@@ -1,10 +1,92 @@
 {
-    "dialog.example.exchange.1": { "sounds": [ "username:dialog/example/exchange/1" ] },
-    "dialog.example.exchange.2": { "sounds": [ "username:dialog/example/exchange/2" ] },
-    "dialog.example.exchange.3": { "sounds": [ "username:dialog/example/exchange/3" ] },
-    "dialog.example.exchange.4": { "sounds": [ "username:dialog/example/exchange/4" ] },
-    "dialog.example.exchange.5": { "sounds": [ "username:dialog/example/exchange/5" ] },
-    "dialog.example.exchange.6": { "sounds": [ "username:dialog/example/exchange/6" ] },
-    "dialog.example.exchange.7": { "sounds": [ "username:dialog/example/exchange/7" ] },
-    "dialog.example.exchange.8": { "sounds": [ "username:dialog/example/exchange/8" ] }
+    "dialog.example.dialog_tree_example.1": {
+        "sounds": [
+            "username:dialog/example/dialog_tree_example/1"
+        ]
+    },
+    "dialog.example.dialog_tree_example.2": {
+        "sounds": [
+            "username:dialog/example/dialog_tree_example/2"
+        ]
+    },
+    "dialog.example.dialog_tree_example.my_life.1": {
+        "sounds": [
+            "username:dialog/example/dialog_tree_example/my_life/1"
+        ]
+    },
+    "dialog.example.dialog_tree_example.my_life.2": {
+        "sounds": [
+            "username:dialog/example/dialog_tree_example/my_life/2"
+        ]
+    },
+    "dialog.example.dialog_tree_example.oh_really.1": {
+        "sounds": [
+            "username:dialog/example/dialog_tree_example/oh_really/1"
+        ]
+    },
+    "dialog.example.dialog_tree_example.oh_really.2": {
+        "sounds": [
+            "username:dialog/example/dialog_tree_example/oh_really/2"
+        ]
+    },
+    "dialog.example.dialog_tree_example.i_came.1": {
+        "sounds": [
+            "username:dialog/example/dialog_tree_example/i_came/1"
+        ]
+    },
+    "dialog.example.dialog_tree_example.i_came.2": {
+        "sounds": [
+            "username:dialog/example/dialog_tree_example/i_came/2"
+        ]
+    },
+    "dialog.example.dialog_tree_example.i_came.3": {
+        "sounds": [
+            "username:dialog/example/dialog_tree_example/i_came/3"
+        ]
+    },
+    "dialog.example.dialog_tree_example.i_came.haven_t_heard.1": {
+        "sounds": [
+            "username:dialog/example/dialog_tree_example/i_came/haven_t_heard/1"
+        ]
+    },
+    "dialog.example.dialog_tree_example.i_came.haven_t_heard.2": {
+        "sounds": [
+            "username:dialog/example/dialog_tree_example/i_came/haven_t_heard/2"
+        ]
+    },
+    "dialog.example.dialog_tree_example.i_came.actually_from.1": {
+        "sounds": [
+            "username:dialog/example/dialog_tree_example/i_came/actually_from/1"
+        ]
+    },
+    "dialog.example.dialog_tree_example.i_came.actually_from.2": {
+        "sounds": [
+            "username:dialog/example/dialog_tree_example/i_came/actually_from/2"
+        ]
+    },
+    "dialog.example.dialog_tree_example.my_life.good_friend.1": {
+        "sounds": [
+            "username:dialog/example/dialog_tree_example/my_life/good_friend/1"
+        ]
+    },
+    "dialog.example.dialog_tree_example.my_life.good_friend.2": {
+        "sounds": [
+            "username:dialog/example/dialog_tree_example/my_life/good_friend/2"
+        ]
+    },
+    "dialog.example.dialog_tree_example.my_life.who_.1": {
+        "sounds": [
+            "username:dialog/example/dialog_tree_example/my_life/who_/1"
+        ]
+    },
+    "dialog.example.dialog_tree_example.my_life.who_.2": {
+        "sounds": [
+            "username:dialog/example/dialog_tree_example/my_life/who_/2"
+        ]
+    },
+    "dialog.example.dialog_tree_example.don_t_worry.1": {
+        "sounds": [
+            "username:dialog/example/dialog_tree_example/don_t_worry/1"
+        ]
+    }
 }

@@ -128,22 +128,30 @@ function username:example/narrativa/show:
     bossbar set username:example/narrativa/line2 name {"nbt": "lines[0][1]", "storage": "ceevyte:narrativa","interpret":true}
     bossbar set username:example/narrativa/line3 name {"nbt": "lines[0][2]", "storage": "ceevyte:narrativa","interpret":true}
 
-    data remove storage ceevyte:narrativa foo
     execute:
+        data remove storage ceevyte:narrativa foo
         data modify storage ceevyte:narrativa foo set from storage ceevyte:narrativa lines[0][2]
         execute if data storage ceevyte:narrativa foo unless data storage ceevyte:narrativa {foo: ""} run return:
             data modify storage ceevyte:narrativa bar set value "\uE002"
 
+        data remove storage ceevyte:narrativa foo
         data modify storage ceevyte:narrativa foo set from storage ceevyte:narrativa lines[0][1]
         execute if data storage ceevyte:narrativa foo unless data storage ceevyte:narrativa {foo: ""} run return:
             data modify storage ceevyte:narrativa bar set value "\uE001"
 
+        data remove storage ceevyte:narrativa foo
         data modify storage ceevyte:narrativa foo set from storage ceevyte:narrativa lines[0][0]
         execute if data storage ceevyte:narrativa foo unless data storage ceevyte:narrativa {foo: ""}:
             data modify storage ceevyte:narrativa bar set value "\uE000"
 
+    data modify storage ceevyte:narrativa foo set from storage ceevyte:narrativa lines[0]
+    execute if data storage ceevyte:narrativa {foo:''}:
+        scoreboard players set /dialog/repeat ceevyte.narrativa.g 0
+
     bossbar set username:example/narrativa/header name {"nbt": "bar", "storage": "ceevyte:narrativa", "font":"username:example/narrativa/header", "shadow_color":0}
+    data remove storage ceevyte:narrativa foo
     data remove storage ceevyte:narrativa bar
+
 
     data modify storage ceevyte:narrativa foo set from storage ceevyte:narrativa actions[0]
     execute if data storage ceevyte:narrativa foo unless data storage ceevyte:narrativa {foo: ""} run function username:example/narrativa/run_action with storage ceevyte:narrativa
@@ -164,9 +172,18 @@ function username:example/narrativa/show:
         function username:example/narrativa/autodub with storage ceevyte:narrativa
         function username:example/narrativa/autodub:
             $stopsound @s voice $(autodub)$(foo)
-            $playsound $(autodub)$(bar) voice @s ~ ~ ~ 2147483647 1 1
+            $playsound $(autodub)$(bar) voice @a ~ ~ ~ 2147483647 1 1
             $stopsound @s voice $(autodub)$(baz)
 
     data remove storage ceevyte:narrativa foo
     data remove storage ceevyte:narrativa bar
     data remove storage ceevyte:narrativa baz
+
+    execute if score /dialog/repeat ceevyte.narrativa.g matches 0:
+        scoreboard players reset /dialog/repeat ceevyte.narrativa.g
+
+        execute if score /dialog/mode ceevyte.narrativa.g matches 1 run return:
+            function ceevyte:narrativa/dialog/advance
+        execute if score /dialog/mode ceevyte.narrativa.g matches -1 run return:
+            function ceevyte:narrativa/dialog/rewind
+        
