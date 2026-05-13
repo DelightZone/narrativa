@@ -3,6 +3,7 @@ from ceevyte:narrativa import new_dialog
 
 choice = Narrativa.new_choice("username.example.narrativa.choice.index.e")
 
+
 function username:dialog/example/dialog_tree_example:
     new_dialog(
         lines=[
@@ -21,31 +22,6 @@ function username:dialog/example/dialog_tree_example:
         autodub="username:dialog.example.dialog_tree_example."
     )
 
-function username:choice/example/dialog_tree_example:
-    scoreboard players enable @a username.example.narrativa.choice.index.e
-    tellraw @a [
-        "", {
-            "text": "\n\n\n\nExample Choice Menu:",
-            "color": "gray"
-        },
-
-        {
-            "text": "\n1. I've lived here all my life!",
-            "click_event": {
-                "action":  "run_command",
-                "command": choice.option("function username:dialog/example/dialog_tree_example/my_life")
-            }
-        },
-        {
-            "text": "\n2. I came here from Newton.",
-            "click_event": {
-                "action":  "run_command",
-                "command": choice.option("function username:dialog/example/dialog_tree_example/i_came")
-            }
-        }
-    ]
-
-    choice.flush()
 
 function username:dialog/example/dialog_tree_example/my_life:
     new_dialog(
@@ -63,6 +39,7 @@ function username:dialog/example/dialog_tree_example/my_life:
         ],
         autodub="username:dialog.example.dialog_tree_example.my_life."
     )
+
 
 function username:dialog/example/dialog_tree_example/oh_really:
     new_dialog(
@@ -82,6 +59,7 @@ function username:dialog/example/dialog_tree_example/oh_really:
         autodub="username:dialog.example.dialog_tree_example.oh_really."
     )
 
+
 function username:dialog/example/dialog_tree_example/i_came:
     new_dialog(
         lines=[
@@ -93,7 +71,7 @@ function username:dialog/example/dialog_tree_example/i_came:
                 'trouble brewing down there."'
             ],
             [
-                ''  
+                ''
             ]
         ],
         actions=[
@@ -104,57 +82,6 @@ function username:dialog/example/dialog_tree_example/i_came:
         autodub="username:dialog.example.dialog_tree_example.i_came."
     )
 
-function username:choice/example/dialog_tree_example/oh_really:
-    scoreboard players enable @a username.example.narrativa.choice.index.e
-    tellraw @a [
-        "", {
-            "text": "\n\n\n\nExample Choice Menu:",
-            "color": "gray"
-        },
-
-        {
-            "text": "\n1. Mr. Bowler is a good friend of mine!",
-            "click_event": {
-                "action":  "run_command",
-                "command": choice.option("function username:dialog/example/dialog_tree_example/my_life/good_friend")
-            }
-        },
-        {
-            "text": "\n2. Who?",
-            "click_event": {
-                "action":  "run_command",
-                "command": choice.option("function username:dialog/example/dialog_tree_example/my_life/who_")
-            }
-        }
-    ]
-
-    choice.flush()
-
-function username:choice/example/dialog_tree_example/i_came:
-    scoreboard players enable @a username.example.narrativa.choice.index.e
-    tellraw @a [
-        "", {
-            "text": "\n\n\n\nExample Choice Menu:",
-            "color": "gray"
-        },
-
-        {
-            "text": "\n1. I haven't heard about any trouble.",
-            "click_event": {
-                "action":  "run_command",
-                "command": choice.option("function username:dialog/example/dialog_tree_example/i_came/haven_t_heard")
-            }
-        },
-        {
-            "text": "\n2. Did I say Newton? I'm actually from Springville.",
-            "click_event": {
-                "action":  "run_command",
-                "command": choice.option("function username:dialog/example/dialog_tree_example/i_came/actually_from")
-            }
-        }
-    ]
-
-    choice.flush()
 
 function username:dialog/example/dialog_tree_example/i_came/haven_t_heard:
     new_dialog(
@@ -173,6 +100,7 @@ function username:dialog/example/dialog_tree_example/i_came/haven_t_heard:
         autodub="username:dialog.example.dialog_tree_example.i_came.haven_t_heard."
     )
 
+
 function username:dialog/example/dialog_tree_example/i_came/actually_from:
     new_dialog(
         lines=[
@@ -180,7 +108,7 @@ function username:dialog/example/dialog_tree_example/i_came/actually_from:
                 'Steve: "Did I say Newton? I\'m actually from Springville."'
             ],
             [
-                ''  
+                ''
             ]
         ],
         actions=[
@@ -205,6 +133,7 @@ function username:dialog/example/dialog_tree_example/my_life/good_friend:
         autodub="username:dialog.example.dialog_tree_example.my_life.good_friend."
     )
 
+
 function username:dialog/example/dialog_tree_example/my_life/who_:
     new_dialog(
         lines=[
@@ -222,6 +151,7 @@ function username:dialog/example/dialog_tree_example/my_life/who_:
         autodub="username:dialog.example.dialog_tree_example.my_life.who_."
     )
 
+
 function username:dialog/example/dialog_tree_example/don_t_worry:
     new_dialog(
         lines=[
@@ -234,3 +164,98 @@ function username:dialog/example/dialog_tree_example/don_t_worry:
         autodub="username:dialog.example.dialog_tree_example.don_t_worry."
     )
 
+
+function username:choice/example/dialog_tree_example:
+    scoreboard players enable @a username.example.narrativa.choice.index.e
+
+    tellraw @a [
+        "", {
+            "text": "\n\n\n\nExample Choice Menu:",
+            "color": "gray"
+        },
+
+        {
+            "text": "\n1. I've lived here all my life!",
+            "click_event": {
+                "action": "run_command",
+                "command": choice.option(
+                    "function username:dialog/example/dialog_tree_example/my_life"
+                )
+            }
+        },
+        {
+            "text": "\n2. I came here from Newton.",
+            "click_event": {
+                "action": "run_command",
+                "command": choice.option(
+                    "function username:dialog/example/dialog_tree_example/i_came"
+                )
+            }
+        }
+    ]
+
+    choice.flush()
+
+
+function username:choice/example/dialog_tree_example/oh_really:
+    scoreboard players enable @a username.example.narrativa.choice.index.e
+
+    tellraw @a [
+        "", {
+            "text": "\n\n\n\nExample Choice Menu:",
+            "color": "gray"
+        },
+
+        {
+            "text": "\n1. Mr. Bowler is a good friend of mine!",
+            "click_event": {
+                "action": "run_command",
+                "command": choice.option(
+                    "function username:dialog/example/dialog_tree_example/my_life/good_friend"
+                )
+            }
+        },
+        {
+            "text": "\n2. Who?",
+            "click_event": {
+                "action": "run_command",
+                "command": choice.option(
+                    "function username:dialog/example/dialog_tree_example/my_life/who_"
+                )
+            }
+        }
+    ]
+
+    choice.flush()
+
+
+function username:choice/example/dialog_tree_example/i_came:
+    scoreboard players enable @a username.example.narrativa.choice.index.e
+
+    tellraw @a [
+        "", {
+            "text": "\n\n\n\nExample Choice Menu:",
+            "color": "gray"
+        },
+
+        {
+            "text": "\n1. I haven't heard about any trouble.",
+            "click_event": {
+                "action": "run_command",
+                "command": choice.option(
+                    "function username:dialog/example/dialog_tree_example/i_came/haven_t_heard"
+                )
+            }
+        },
+        {
+            "text": "\n2. Did I say Newton? I'm actually from Springville.",
+            "click_event": {
+                "action": "run_command",
+                "command": choice.option(
+                    "function username:dialog/example/dialog_tree_example/i_came/actually_from"
+                )
+            }
+        }
+    ]
+
+    choice.flush()
