@@ -10,18 +10,18 @@ append function_tag minecraft:load {
 ## General
 
 function ceevyte:narrativa/load:
-    scoreboard objectives add ceevyte.narrativa.index.e dummy {"text": "Dialogue Index", "color": "gold"}
+    scoreboard objectives add ceevyte.narrativa.g trigger {"text": "Narrativa Globals", "color": "gold"}
 
 
-## Navigation
+## Dialog navigation
 
-function ceevyte:narrativa/_/advance:
+function ceevyte:narrativa/dialog/advance:
     execute unless data storage ceevyte:narrativa lines[0] run return fail
-    scoreboard players add @s ceevyte.narrativa.index.e 1
+    scoreboard players add /dialog/index ceevyte.narrativa.g 1
 
     data modify storage ceevyte:narrativa _lines prepend from storage ceevyte:narrativa lines[0]
     execute unless data storage ceevyte:narrativa lines[1]:
-        function ceevyte:narrativa/_/end
+        function ceevyte:narrativa/dialog/end
     data remove storage ceevyte:narrativa lines[0]
 
     data modify storage ceevyte:narrativa _actions prepend from storage ceevyte:narrativa actions[0]
@@ -29,13 +29,13 @@ function ceevyte:narrativa/_/advance:
 
     function #ceevyte:narrativa/show
 
-function ceevyte:narrativa/_/rewind:
+function ceevyte:narrativa/dialog/rewind:
     execute unless data storage ceevyte:narrativa lines[0] run return fail
 
-    scoreboard players remove @s ceevyte.narrativa.index.e 1
+    scoreboard players remove /dialog/index ceevyte.narrativa.g 1
     data modify storage ceevyte:narrativa lines prepend from storage ceevyte:narrativa _lines[0]
     execute unless data storage ceevyte:narrativa _lines[0]:
-        function ceevyte:narrativa/_/end
+        function ceevyte:narrativa/dialog/end
     data remove storage ceevyte:narrativa _lines[0]
 
     data modify storage ceevyte:narrativa actions prepend from storage ceevyte:narrativa _actions[0]
@@ -43,8 +43,8 @@ function ceevyte:narrativa/_/rewind:
 
     function #ceevyte:narrativa/show
 
-function ceevyte:narrativa/_/end:
-    scoreboard players reset @s ceevyte.narrativa.index.e
+function ceevyte:narrativa/dialog/end:
+    scoreboard players reset /dialog/index ceevyte.narrativa.g
 
     data remove storage ceevyte:narrativa lines
     data remove storage ceevyte:narrativa _lines
@@ -55,20 +55,35 @@ function ceevyte:narrativa/_/end:
 
     function #ceevyte:narrativa/end
 
-function ceevyte:narrativa/_/start:
+function ceevyte:narrativa/dialog/start:
     function #ceevyte:narrativa/end
     function #ceevyte:narrativa/start
 
 
+## Choice system
+
+function ceevyte:narrativa/choice/_/pick:
+    execute store result storage ceevyte:narrativa bar int 1 run scoreboard players get /choice/option ceevyte.narrativa.g
+    function ceevyte:narrativa/choice/pick with storage ceevyte:narrativa
+    function ceevyte:narrativa/choice/pick:
+        $data modify storage ceevyte:narrativa foo set from storage ceevyte:narrativa options[$(bar)]
+    function ceevyte:narrativa/choice/run with storage ceevyte:narrativa
+    function ceevyte:narrativa/choice/run:
+        $$(foo)
+    
+    data remove storage ceevyte:narrativa foo
+    data remove storage ceevyte:narrativa bar
+    data remove storage ceevyte:narrativa options
+
 ## API
 
-def new_dialogue(
+def new_dialog(
     lines=[],
     actions=[],
     autodub=""
 ):
-    function ceevyte:narrativa/_/start
-    scoreboard players set @s ceevyte.narrativa.index.e 0
+    function ceevyte:narrativa/dialog/start
+    scoreboard players set /dialog/index ceevyte.narrativa.g 0
 
     data remove storage ceevyte:narrativa _lines
     data modify storage ceevyte:narrativa "lines" set value lines
@@ -81,6 +96,31 @@ def new_dialogue(
     if autodub:
         data modify storage ceevyte:narrativa "autodub" set value autodub
 
-    function ceevyte:narrativa/_/advance
+    function ceevyte:narrativa/dialog/advance
     data remove storage ceevyte:narrativa _lines[-1]
     data remove storage ceevyte:narrativa _actions[-1]
+
+class new_choice:
+    def __init__(
+        self,
+        objective="none"
+    ):
+        self.objective = objective
+        self.choices = []
+
+    def add_choice(
+        self,
+        action=""
+    ):
+        self._append_choice(action)
+        trigger self.objective set len(self.choices)
+
+    def _append_choice(
+        self,
+        action=""
+    ):
+        self.choices.append(action)
+
+    def flush(self):
+        data modify storage ceevyte:narrativa options set value self.choices
+        self.choices = []

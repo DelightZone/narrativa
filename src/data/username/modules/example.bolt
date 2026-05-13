@@ -1,7 +1,9 @@
 import ceevyte:narrativa as Narrativa
 
-function username:dialogue/example/exchange:
-    Narrativa.new_dialogue(
+new_choice = Narrativa.new_choice("username.example.narrativa.")
+
+function username:dialog/example/exchange:
+    Narrativa.new_dialog(
         lines=[
             [
                 'Alex: "You don\'t look like you\'re from around here."'
@@ -42,5 +44,5 @@ function username:dialogue/example/exchange:
             "",
             ""
         ],
-        autodub="username:dialogue.example.exchange."
+        autodub="username:dialog.example.exchange."
     )

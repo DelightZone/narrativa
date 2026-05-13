@@ -50,6 +50,10 @@ predicate username:example/narrativa/sprint {
         "type_specific": {
             "type": "minecraft:player",
             "input": {
+                "forward": false,
+                "backward": false,
+                "left": false,
+                "right": false,
                 "sprint": true
             }
         }
@@ -73,23 +77,37 @@ function username:example/narrativa/load:
 function username:example/narrativa/tick:
     schedule function username:example/narrativa/tick 1t replace
     execute as @a[tag=!username.example.narrativa.forbidden] at @s:
+        ## Dialog
+
         execute unless predicate username:example/narrativa/sprint:
             execute if score @s username.example.narrativa.sprint.e matches 0:
-                function ceevyte:narrativa/_/advance
+                function ceevyte:narrativa/dialog/advance
             scoreboard players reset @s username.example.narrativa.sprint.e
 
         execute unless predicate username:example/narrativa/sneak if score @s username.example.narrativa.sneak.e matches 0:
             scoreboard players reset @s username.example.narrativa.sneak.e
 
             # Prevents the dialogue from ending on rewind.
-            execute if score @s ceevyte.narrativa.index.e matches 1 run return 1
-            function ceevyte:narrativa/_/rewind
+            execute if score /dialog/index ceevyte.narrativa.g matches 1 run return 1
+            function ceevyte:narrativa/dialog/rewind
 
         execute if predicate username:example/narrativa/sprint:
             execute unless score @s username.example.narrativa.sprint.e matches -1..0 run scoreboard players set @s username.example.narrativa.sprint.e 0
             execute if predicate username:example/narrativa/sneak:
                 scoreboard players set @s username.example.narrativa.sneak.e 0
                 scoreboard players set @s username.example.narrativa.sprint.e -1
+        
+
+        ## Choice
+
+        execute unless score @s ceevyte.narrativa.option.e matches ..-1:
+            execute if score @s ceevyte.narrativa.option.e matches 0..:
+                tellraw @a [{"selector": "@s"}," ",{"text": "chose: "},{"score": {"name": "@s", "objective":"ceevyte.narrativa.option.e"}}]
+            scoreboard players reset @s ceevyte.narrativa.option.e
+        
+function username:example/narrativa/choice/enable:
+    scoreboard players enable @s ceevyte.narrativa.option.e
+    scoreboard players set @s ceevyte.narrativa.option.e -1
 
 function username:example/narrativa/start:
     bossbar set username:example/narrativa/header players @a
@@ -135,13 +153,13 @@ function username:example/narrativa/show:
     data remove storage ceevyte:narrativa foo
 
     execute if data storage ceevyte:narrativa autodub:
-        scoreboard players remove @s ceevyte.narrativa.index.e 1
-        execute store result storage ceevyte:narrativa foo int 1 run scoreboard players get @s ceevyte.narrativa.index.e
-        scoreboard players add @s ceevyte.narrativa.index.e 1
-        execute store result storage ceevyte:narrativa bar int 1 run scoreboard players get @s ceevyte.narrativa.index.e
-        scoreboard players add @s ceevyte.narrativa.index.e 1
-        execute store result storage ceevyte:narrativa baz int 1 run scoreboard players get @s ceevyte.narrativa.index.e
-        scoreboard players remove @s ceevyte.narrativa.index.e 1
+        scoreboard players remove /dialog/index ceevyte.narrativa.g 1
+        execute store result storage ceevyte:narrativa foo int 1 run scoreboard players get /dialog/index ceevyte.narrativa.g
+        scoreboard players add /dialog/index ceevyte.narrativa.g 1
+        execute store result storage ceevyte:narrativa bar int 1 run scoreboard players get /dialog/index ceevyte.narrativa.g
+        scoreboard players add /dialog/index ceevyte.narrativa.g 1
+        execute store result storage ceevyte:narrativa baz int 1 run scoreboard players get /dialog/index ceevyte.narrativa.g
+        scoreboard players remove /dialog/index ceevyte.narrativa.g 1
 
         function username:example/narrativa/autodub with storage ceevyte:narrativa
         function username:example/narrativa/autodub:
