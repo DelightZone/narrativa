@@ -9,7 +9,7 @@ A flexible dialogue engine which I use in my projects.
 
 ## Usage example
 
-[This](src/data/username/modules/example/narrativa/handler.bolt) and [that](src/data/username/modules/example/narrativa/trees/example.bolt) file as a whole. Make your own stuff freely, why not?
+[This](src/data/username/modules/example/narrativa/handler.bolt) and [that](src/data/username/modules/example/narrativa/trees/dialog_tree_example.bolt) file as a whole. Make your own stuff freely, why not?
 
 ## Development setup
 
