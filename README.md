@@ -1,5 +1,8 @@
 # Narrativa
 
+[![English](https://img.shields.io/badge/Language-English-blue)](README.md)
+[![Русский](https://img.shields.io/badge/Язык-Русский-red)](README_RU.md)
+
 > A dialogue engine for Minecraft.
 
 [![GitHub][github-repo]][repo-url]
@@ -20,7 +23,7 @@ A dialogue has two main parts: dialogue nodes and choice menus.
 function username:dialog/example/greeting:
     Narrativa.new_dialog(
         lines=[
-            ['Cee Vyte: "This is completely under', 'your control by the way.'],
+            ['Cee Vyte: "This is completely under', 'your control, by the way.'],
             ''
         ],
         actions=[
@@ -75,8 +78,8 @@ Cee Vyte, @ceevyte, kosoycded@gmail.com
 
 Distributed under GPL-3.0. See LICENSE for details.
 
-GitHub
-GitHub Repo
+[github-repo]: https://img.shields.io/badge/DelightZone-narrativa-blue?logo=github
+[repo-url]: https://github.com/DelightZone/narrativa
 
 ## Contributing
 
@@ -86,6 +89,4 @@ GitHub Repo
 4. Push it (`git push origin feature/fooBar`)
 5. Open a [Pull Request](https://github.com/DelightZone/narrativa/pulls)
 
-<!-- Markdown link & img dfn's -->
-[github-repo]: https://img.shields.io/badge/DelightZone-narrativa-blue?logo=github
-[repo-url]: https://github.com/DelightZone/narrativa
+<!-- execute in minecraft:overworld run tp @s -160.47 -57.00 91.87 3632.27 0.75 -->
