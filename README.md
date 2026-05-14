@@ -1,15 +1,61 @@
 # Narrativa
-> A dialogue toolkit for Minecraft.
+> A dialogue engine for Minecraft.
 
 [![GitHub][github-repo]][repo-url]
 
-A flexible dialogue engine which I use in my projects.
+### What is Narrativa?
+Narrativa is a datapack-based dialogue engine for Minecraft 1.21.11. It lets you write branching conversations / descriptions / flavour texts / and honestly whatever you can use it for, apparently. Made via Bolt, and uses `.bolt` modules to function. The engine handles the API functions, visuals, logic, and autodub for your convinience. You only have to give it stuff to work with.
 
 ![](header.png)
 
-## Usage example
+## How to use it
 
-[This](src/data/username/modules/example/narrativa/handler.bolt) and [that](src/data/username/modules/example/narrativa/trees/dialog_tree_example.bolt) file as a whole. Make your own stuff freely, why not?
+A "dialogue" is made up of two building blocks: dialogue nodes and choice menus.
+
+#### Dialogue node
+```python
+function username:dialog/example/greeting:
+    Narrativa.new_dialog(
+        lines=[
+            ['Cee Vyte: "This is completely under', 'your control by the way.'],
+            ''
+        ],
+        actions=[
+            "",
+            "function username:choice/example/greeting"
+        ],
+        autodub="username:dialog.example.greeting."
+    )
+```
+
+`lines` - a list of text frames. Each entry is either a list of strings (a single raw json object, effectively just a /tellraw) or an empty string ('') for an auto-skipped frame.
+
+`actions` - runs a command when that frame finishes. Empty strings do nothing. Index must match the corresponding entry in lines. Please make sure the amount of actions match the amount of lines, or otherwise there WILL be de-sync.
+
+`autodub` - a namespace prefix for auto-resolving playsound commands. Narrativa appends the frame index automatically. Optional.
+
+#### Choice menu
+```python
+function username:choice/example/greeting:
+    choice_menu(
+        title=  "Choice Menu Title:"
+        options=[
+            Choice(
+                "Option A.",
+                "say Chose: Option A!"
+            ),
+            Choice(
+                "Option B.",
+                "say Chose: Option B!"
+            )
+        ]
+    )
+```
+Choice menu takes the display text and the command to run when the player picks it. Technically made for choices specifically, but you're free to misuse it as you wish.
+
+#### Putting it together
+Chains are built by having the last action in a node call either the next dialogue node or a choice menu. Mess around with the syntax and you'll get how it's done.
+Swap `username` with your actual in-game name, and `example` with your project / namespace. 
 
 ## Development setup
 
