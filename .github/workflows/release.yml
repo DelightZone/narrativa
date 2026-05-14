@@ -1,39 +1,25 @@
-name: Release
+name: Build and Release
 
 on:
   push:
     tags:
       - 'v*'
 
-permissions:
-  contents: write
-
 jobs:
-  build-test-release:
+  release:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: [actions/checkout](https://github.com)@v4
 
-      - name: Package release
-        run: |
-          mkdir dist-package
-          cp -r dist/* dist-package/
-          zip -r release.zip dist-package
+      - name: Zip Repository
+        run: zip -r release.zip . -x "*.git*"
 
-      - name: Extract version from tag
-        id: version
-        run: |
-          TAG="${GITHUB_REF_NAME}"
-          VERSION="${TAG#v}"
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
-
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+      - name: Create and Upload Release
+        uses: [ncipollo/release-action](https://github.com)@v1
         with:
-          tag_name: ${{ github.ref_name }}
-          name: Release ${{ github.ref_name }}
-          files: release.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: "release.zip"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          generateReleaseNotes: true
