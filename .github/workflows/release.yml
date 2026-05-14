@@ -13,10 +13,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Zip repository
-        run: zip -r release.zip .
+      - name: Zip repository (excluding build folder)
+        run: zip -r release.zip . --exclude "./build/*"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.3'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build
+        run: beet build
+
+      - name: Zip build folder
+        run: zip -r build.zip ./build
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          files: release.zip
+          files: |
+            release.zip
+            build.zip
