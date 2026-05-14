@@ -13,10 +13,11 @@ A flexible dialogue engine which I use in my projects.
 
 ## Development setup
 
-It's all pretty simple, so just clone the original repository to start, and mess around with the `example_usage.bolt` if needed.
+It's all pretty simple, so just clone the latest stable version of the repository to start, and mess around with Bolt modules if needed.
 
 ```sh
-git clone https://github.com/DelightZone/narrativa.git
+curl -L https://github.com/DelightZone/narrativa/releases/latest/download/release.zip -o narrativa.zip
+unzip narrativa.zip -d narrativa/
 cd narrativa
 pip install -r requirements.txt
 ```
