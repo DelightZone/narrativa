@@ -1,4 +1,4 @@
-name: Build and Release
+name: Release
 
 on:
   push:
@@ -11,12 +11,12 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Zip Repository
-        run: zip -r release.zip . -x "*.git*"
+      - uses: actions/checkout@v4
 
-      - name: Create and Upload Release
-        uses: [ncipollo/release-action](https://github.com)@v1
+      - name: Zip repository
+        run: zip -r release.zip .
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
         with:
-          artifacts: "release.zip"
-          token: ${{ secrets.GITHUB_TOKEN }}
-          generateReleaseNotes: true
+          files: release.zip
