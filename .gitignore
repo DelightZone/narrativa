@@ -1,3 +1,4 @@
 build
 .beet_cache
 .vscode
+.git
