@@ -5,32 +5,32 @@ import ceevyte:narrativa as Narrativa
 
 append function_tag minecraft:load {
     "values": [
-        "username:example/narrativa/load"
+        "ceevyte:narrativa/handler/load"
     ]
 }
 
 append function_tag ceevyte:narrativa/show {
     "values": [
-        "username:example/narrativa/show"
+        "ceevyte:narrativa/handler/show"
     ]
 }
 
 append function_tag ceevyte:narrativa/start {
     "values": [
-        "username:example/narrativa/start"
+        "ceevyte:narrativa/handler/start"
     ]
 }
 
 append function_tag ceevyte:narrativa/end {
     "values": [
-        "username:example/narrativa/end"
+        "ceevyte:narrativa/handler/end"
     ]
 }
 
 
 ## Predicates
 
-predicate username:example/narrativa/sneak {
+predicate ceevyte:narrativa/handler/sneak {
     "condition": "minecraft:entity_properties",
     "entity": "this",
     "predicate": {
@@ -43,7 +43,7 @@ predicate username:example/narrativa/sneak {
     }
 }
 
-predicate username:example/narrativa/sprint {
+predicate ceevyte:narrativa/handler/sprint {
     "condition": "minecraft:entity_properties",
     "entity": "this",
     "predicate": {
@@ -63,70 +63,70 @@ predicate username:example/narrativa/sprint {
 
 ## General
 
-function username:example/narrativa/load:
-    scoreboard objectives add username.example.narrativa.sneak.e dummy {"text": "Sneak Toggle", "color": "gold"}
-    scoreboard objectives add username.example.narrativa.sprint.e dummy {"text": "Sprint Toggle", "color": "gold"}
+function ceevyte:narrativa/handler/load:
+    scoreboard objectives add ceevyte.narrativa.handler.sneak.e dummy {"text": "Sneak Toggle", "color": "gold"}
+    scoreboard objectives add ceevyte.narrativa.handler.sprint.e dummy {"text": "Sprint Toggle", "color": "gold"}
 
-    scoreboard objectives add username.example.narrativa.choice.index.e trigger {"text": "Choice Index", "color": "white"}
+    scoreboard objectives add ceevyte.narrativa.handler.choice.index.e trigger {"text": "Choice Index", "color": "white"}
 
-    bossbar add username:example/narrativa/header "Header"
-    bossbar add username:example/narrativa/line1 "Line 1"
-    bossbar add username:example/narrativa/line2 "Line 2"
-    bossbar add username:example/narrativa/line3 "Line 3"
+    bossbar add ceevyte:narrativa/handler/header "Header"
+    bossbar add ceevyte:narrativa/handler/line1 "Line 1"
+    bossbar add ceevyte:narrativa/handler/line2 "Line 2"
+    bossbar add ceevyte:narrativa/handler/line3 "Line 3"
 
-    function username:example/narrativa/tick
+    function ceevyte:narrativa/handler/tick
 
-function username:example/narrativa/tick:
-    schedule function username:example/narrativa/tick 1t replace
-    execute as @a[tag=!username.example.narrativa.forbidden] at @s:
+function ceevyte:narrativa/handler/tick:
+    schedule function ceevyte:narrativa/handler/tick 1t replace
+    execute as @a[tag=!ceevyte.narrativa.handler.forbidden] at @s:
         ## Dialog
 
-        execute unless predicate username:example/narrativa/sprint:
-            execute if score @s username.example.narrativa.sprint.e matches 0:
+        execute unless predicate ceevyte:narrativa/handler/sprint:
+            execute if score @s ceevyte.narrativa.handler.sprint.e matches 0:
                 function ceevyte:narrativa/dialog/advance
-            scoreboard players reset @s username.example.narrativa.sprint.e
+            scoreboard players reset @s ceevyte.narrativa.handler.sprint.e
 
-        execute unless predicate username:example/narrativa/sneak if score @s username.example.narrativa.sneak.e matches 0:
-            scoreboard players reset @s username.example.narrativa.sneak.e
+        execute unless predicate ceevyte:narrativa/handler/sneak if score @s ceevyte.narrativa.handler.sneak.e matches 0:
+            scoreboard players reset @s ceevyte.narrativa.handler.sneak.e
 
             # Prevents the dialogue from ending on rewind.
             execute if score /dialog/index ceevyte.narrativa.g matches 1 run return 1
             function ceevyte:narrativa/dialog/rewind
 
-        execute if predicate username:example/narrativa/sprint:
-            execute unless score @s username.example.narrativa.sprint.e matches -1..0 run scoreboard players set @s username.example.narrativa.sprint.e 0
-            execute if predicate username:example/narrativa/sneak:
-                scoreboard players set @s username.example.narrativa.sneak.e 0
-                scoreboard players set @s username.example.narrativa.sprint.e -1
+        execute if predicate ceevyte:narrativa/handler/sprint:
+            execute unless score @s ceevyte.narrativa.handler.sprint.e matches -1..0 run scoreboard players set @s ceevyte.narrativa.handler.sprint.e 0
+            execute if predicate ceevyte:narrativa/handler/sneak:
+                scoreboard players set @s ceevyte.narrativa.handler.sneak.e 0
+                scoreboard players set @s ceevyte.narrativa.handler.sprint.e -1
         
 
         ## Choice
 
-        execute if score @s username.example.narrativa.choice.index.e matches 1..:
-            scoreboard players operation /choice/index ceevyte.narrativa.g = @s username.example.narrativa.choice.index.e
+        execute if score @s ceevyte.narrativa.handler.choice.index.e matches 1..:
+            scoreboard players operation /choice/index ceevyte.narrativa.g = @s ceevyte.narrativa.handler.choice.index.e
             function ceevyte:narrativa/choice/pick
             scoreboard players reset /choice/index ceevyte.narrativa.g
-            scoreboard players reset @a username.example.narrativa.choice.index.e
+            scoreboard players reset @a ceevyte.narrativa.handler.choice.index.e
 
-function username:example/narrativa/start:
-    bossbar set username:example/narrativa/header players @a
-    bossbar set username:example/narrativa/line1 players @a
-    bossbar set username:example/narrativa/line2 players @a
-    bossbar set username:example/narrativa/line3 players @a
+function ceevyte:narrativa/handler/start:
+    bossbar set ceevyte:narrativa/handler/header players @a
+    bossbar set ceevyte:narrativa/handler/line1 players @a
+    bossbar set ceevyte:narrativa/handler/line2 players @a
+    bossbar set ceevyte:narrativa/handler/line3 players @a
 
-function username:example/narrativa/end:
-    bossbar set username:example/narrativa/header players 0
-    bossbar set username:example/narrativa/line1 players 0
-    bossbar set username:example/narrativa/line2 players 0
-    bossbar set username:example/narrativa/line3 players 0
+function ceevyte:narrativa/handler/end:
+    bossbar set ceevyte:narrativa/handler/header players 0
+    bossbar set ceevyte:narrativa/handler/line1 players 0
+    bossbar set ceevyte:narrativa/handler/line2 players 0
+    bossbar set ceevyte:narrativa/handler/line3 players 0
 
 
 ## Display
 
-function username:example/narrativa/show:
-    bossbar set username:example/narrativa/line1 name {"nbt": "lines[0][0]", "storage": "ceevyte:narrativa","interpret":true}
-    bossbar set username:example/narrativa/line2 name {"nbt": "lines[0][1]", "storage": "ceevyte:narrativa","interpret":true}
-    bossbar set username:example/narrativa/line3 name {"nbt": "lines[0][2]", "storage": "ceevyte:narrativa","interpret":true}
+function ceevyte:narrativa/handler/show:
+    bossbar set ceevyte:narrativa/handler/line1 name {"nbt": "lines[0][0]", "storage": "ceevyte:narrativa","interpret":true}
+    bossbar set ceevyte:narrativa/handler/line2 name {"nbt": "lines[0][1]", "storage": "ceevyte:narrativa","interpret":true}
+    bossbar set ceevyte:narrativa/handler/line3 name {"nbt": "lines[0][2]", "storage": "ceevyte:narrativa","interpret":true}
 
     execute:
         data remove storage ceevyte:narrativa foo
@@ -148,14 +148,14 @@ function username:example/narrativa/show:
     execute if data storage ceevyte:narrativa {foo:''}:
         scoreboard players set /dialog/repeat ceevyte.narrativa.g 0
 
-    bossbar set username:example/narrativa/header name {"nbt": "bar", "storage": "ceevyte:narrativa", "font":"username:example/narrativa/header", "shadow_color":0}
+    bossbar set ceevyte:narrativa/handler/header name {"nbt": "bar", "storage": "ceevyte:narrativa", "font":"ceevyte:narrativa/header", "shadow_color":0}
     data remove storage ceevyte:narrativa foo
     data remove storage ceevyte:narrativa bar
 
 
     data modify storage ceevyte:narrativa foo set from storage ceevyte:narrativa actions[0]
-    execute if data storage ceevyte:narrativa foo unless data storage ceevyte:narrativa {foo: ""} run function username:example/narrativa/run_action with storage ceevyte:narrativa
-    function username:example/narrativa/run_action:
+    execute if data storage ceevyte:narrativa foo unless data storage ceevyte:narrativa {foo: ""} run function ceevyte:narrativa/handler/run_action with storage ceevyte:narrativa
+    function ceevyte:narrativa/handler/run_action:
         $$(foo)
 
     data remove storage ceevyte:narrativa foo
@@ -169,8 +169,8 @@ function username:example/narrativa/show:
         execute store result storage ceevyte:narrativa baz int 1 run scoreboard players get /dialog/index ceevyte.narrativa.g
         scoreboard players remove /dialog/index ceevyte.narrativa.g 1
 
-        function username:example/narrativa/autodub with storage ceevyte:narrativa
-        function username:example/narrativa/autodub:
+        function ceevyte:narrativa/handler/autodub with storage ceevyte:narrativa
+        function ceevyte:narrativa/handler/autodub:
             $stopsound @s voice $(autodub)$(foo)
             $playsound $(autodub)$(bar) voice @a ~ ~ ~ 2147483647 1 1
             $stopsound @s voice $(autodub)$(baz)

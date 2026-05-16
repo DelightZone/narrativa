@@ -1,0 +1,92 @@
+{
+    "dialog.example.1": {
+        "sounds": [
+            "ceevyte:dialog/example/1"
+        ]
+    },
+    "dialog.example.2": {
+        "sounds": [
+            "ceevyte:dialog/example/2"
+        ]
+    },
+    "dialog.example.my_life.1": {
+        "sounds": [
+            "ceevyte:dialog/example/my_life/1"
+        ]
+    },
+    "dialog.example.my_life.2": {
+        "sounds": [
+            "ceevyte:dialog/example/my_life/2"
+        ]
+    },
+    "dialog.example.oh_really.1": {
+        "sounds": [
+            "ceevyte:dialog/example/oh_really/1"
+        ]
+    },
+    "dialog.example.oh_really.2": {
+        "sounds": [
+            "ceevyte:dialog/example/oh_really/2"
+        ]
+    },
+    "dialog.example.i_came.1": {
+        "sounds": [
+            "ceevyte:dialog/example/i_came/1"
+        ]
+    },
+    "dialog.example.i_came.2": {
+        "sounds": [
+            "ceevyte:dialog/example/i_came/2"
+        ]
+    },
+    "dialog.example.i_came.3": {
+        "sounds": [
+            "ceevyte:dialog/example/i_came/3"
+        ]
+    },
+    "dialog.example.i_came.haven_t_heard.1": {
+        "sounds": [
+            "ceevyte:dialog/example/i_came/haven_t_heard/1"
+        ]
+    },
+    "dialog.example.i_came.haven_t_heard.2": {
+        "sounds": [
+            "ceevyte:dialog/example/i_came/haven_t_heard/2"
+        ]
+    },
+    "dialog.example.i_came.actually_from.1": {
+        "sounds": [
+            "ceevyte:dialog/example/i_came/actually_from/1"
+        ]
+    },
+    "dialog.example.i_came.actually_from.2": {
+        "sounds": [
+            "ceevyte:dialog/example/i_came/actually_from/2"
+        ]
+    },
+    "dialog.example.my_life.good_friend.1": {
+        "sounds": [
+            "ceevyte:dialog/example/my_life/good_friend/1"
+        ]
+    },
+    "dialog.example.my_life.good_friend.2": {
+        "sounds": [
+            "ceevyte:dialog/example/my_life/good_friend/2"
+        ]
+    },
+    "dialog.example.my_life.who_.1": {
+        "sounds": [
+            "ceevyte:dialog/example/my_life/who_/1"
+        ]
+    },
+    "dialog.example.my_life.who_.2": {
+        "sounds": [
+            "ceevyte:dialog/example/my_life/who_/2"
+        ]
+    },
+    "dialog.example.don_t_worry.1": {
+        "sounds": [
+            "ceevyte:dialog/example/don_t_worry/1"
+        ]
+    }
+}

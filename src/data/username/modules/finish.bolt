@@ -1,7 +1,0 @@
-import json
-import ceevyte:narrativa as Narrativa
-
-if Narrativa.DUMP_AUTODUB:
-    autodub = Narrativa._get_autodub()
-
-    print(json.dumps(autodub, indent=4))

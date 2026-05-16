@@ -1,0 +1,42 @@
+## Setup
+
+from dataclasses import dataclass
+
+import ceevyte:narrativa as Narrativa
+
+choice = Narrativa.new_choice("ceevyte.narrativa.handler.choice.index.e")
+
+@dataclass
+class option:
+    name: str
+    command: str
+
+def _option(choice_data):
+    return {
+        "text": f"\n{len(choice._get())}. {choice_data.name}",
+        "click_event": {
+            "action": "run_command",
+            "command": choice.option(choice_data.command)
+        }
+    }
+
+def choice_menu(
+    title=  "Pick an Option:",
+    options=None
+):
+    components = [
+        "",
+        {
+            "text": f"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n{title}",
+            "color": "gray"
+        }
+    ]
+
+    for data in options:
+        components.append(_option(data))
+
+    scoreboard players enable @a ceevyte.narrativa.handler.choice.index.e
+
+    tellraw @a components
+
+    choice.flush()

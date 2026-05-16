@@ -12,17 +12,6 @@ append function_tag minecraft:load {
 function ceevyte:narrativa/load:
     scoreboard objectives add ceevyte.narrativa.g trigger {"text": "Narrativa Globals", "color": "gold"}
 
-
-## Misc
-
-DUMP_AUTODUB = False
-
-_autodub = {}
-
-def _get_autodub():
-    return _autodub
-
-
 ## Dialog navigation
 
 function ceevyte:narrativa/dialog/advance:
@@ -119,14 +108,6 @@ def new_dialog(
     function ceevyte:narrativa/dialog/advance
     data remove storage ceevyte:narrativa _lines[-1]
     data remove storage ceevyte:narrativa _actions[-1]
-
-    if DUMP_AUTODUB:
-        for i in range(len(lines)):
-            remove_namespace = 1
-            key = f"{autodub}{i+1}"
-            _autodub[key.split(":", 1)[remove_namespace]] = {
-                "sounds": [key.replace(".", "/")]
-            }
 
 class new_choice:
     def __init__(

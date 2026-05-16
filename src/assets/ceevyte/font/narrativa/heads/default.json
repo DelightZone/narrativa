@@ -1,0 +1,15 @@
+{
+    "providers": [
+        {
+            "type": "bitmap",
+            "file": "ceevyte:font/narrativa/heads/default.png",
+            "height": 11,
+            "ascent": 9.5,
+            "chars": [
+                "123",
+                "456",
+                "789"
+            ]
+        }
+    ]
+}

@@ -21,8 +21,8 @@ meta:
     entrypoint: [
       "ceevyte:narrativa",
 
-      "username:example/narrativa/handler",
-      "username:example/narrativa/trees/dialog_tree_example",
+      "example:preset",
+      "example:handler",
 
-      "username:finish"
+      "example:trees/example"
     ]
