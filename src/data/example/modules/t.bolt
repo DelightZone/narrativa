@@ -2,6 +2,8 @@
 # Or am I. Oh no. Why am I like this.
 # It is too tedius, please. Someone do it for me TwT
 
+# I pushed it to my limit. Help XD.
+
 LOCALE = "en"
 
 def get_active_locale():
