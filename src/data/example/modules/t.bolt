@@ -1,0 +1,12 @@
+# I am NOT gonna implement translations for my own sanity's sake for now, LMAOOO
+# Or am I. Oh no. Why am I like this.
+# It is too tedius, please. Someone do it for me TwT
+
+LOCALE = "en"
+
+def get_active_locale():
+    return LOCALE
+
+def t(**locales):
+    active = get_active_locale()
+    return locales.get(active, locales.get("en", ""))

@@ -21,10 +21,10 @@ def SimpleSpeaker(face="\uE000", name="None", color="gray", line="Example Line",
                 ]
             }
 
-def _Alex(line="Example Line"):
+def _Alex(line=""):
     return SimpleSpeaker(face="1", name="Alex", color="yellow", line=line)
 
-def _Steve(line="Example Line"):
+def _Steve(line=""):
     return SimpleSpeaker(face="7", name="Steve", color="aqua", line=line)
 
 ## Dialogues
@@ -52,7 +52,7 @@ function ceevyte:dialog/example/my_life:
             [
                 _Steve('"I\'ve lived here all my life!"')
             ],
-            '_'
+            '.'
         ],
         actions=[
             "",
@@ -106,7 +106,7 @@ function ceevyte:dialog/example/i_came/haven_t_heard:
             [
                 _Steve('"I haven\'t heard about any trouble."')
             ],
-            '_'
+            '.'
         ],
         actions=[
             "",
@@ -122,7 +122,7 @@ function ceevyte:dialog/example/i_came/actually_from:
             [
                 _Steve('"Did I say Newton? I\'m actually from Springville."')
             ],
-            '_'
+            '.'
         ],
         actions=[
             "",
@@ -153,7 +153,7 @@ function ceevyte:dialog/example/my_life/who_:
             [
                 _Steve('"Who?"')
             ],
-            '_'
+            '.'
         ],
         actions=[
             "",
