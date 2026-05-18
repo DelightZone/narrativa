@@ -13,8 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Zip repository (excluding build folder)
-        run: zip -r release.zip . --exclude "./build/*"
+      - name: Zip repository
+        run: zip -r release.zip . --exclude "./build/*" --exclude "./assets/*"
 
       - uses: actions/setup-python@v5
         with:
