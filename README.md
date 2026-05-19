@@ -20,10 +20,15 @@ A dialogue has two main parts: dialogue nodes and choice menus.
 
 ### Dialogue node
 ```Python
+def _CeeVyte(*lines, **kwargs):
+    return SimpleSpeaker(lines=list(lines), face="7", name="Сee Vyte", **kwargs)
+
 function username:dialog/example/greeting:
     Narrativa.new_dialog(
         lines=[
             ['Cee Vyte: "This is completely under', 'your control, by the way.'],
+            _CeeVyte('"Or you could use a SimpleSpeaker wrapper',
+            'to make it look pretty."')
             ''
         ],
         actions=[

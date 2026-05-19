@@ -20,10 +20,15 @@ Narrativa это движок диалогов для датапаков Minecra
 
 ### Узел диалога
 ```Python
+def _CeeVyte(*lines, **kwargs):
+    return SimpleSpeaker(lines=list(lines), face="7", name="Сee Vyte", **kwargs)
+
 function username:dialog/example/greeting:
     Narrativa.new_dialog(
         lines=[
-            ['Cee Vyte: "Это полностью под твоим', 'контролем, кстати говоря.'],
+            ['Cee Vyte: "Это полностью под твоим', 'контролем, кстати говоря."'],
+            _CeeVyte('"Или вы можете использовать обёртку SimpleSpeaker,',
+                'чтобы это выглядело красиво."')
             ''
         ],
         actions=[
