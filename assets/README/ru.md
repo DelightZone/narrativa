@@ -1,7 +1,7 @@
 # Narrativa
 
-[![English](https://img.shields.io/badge/Language-English-blue)](README.md)
-[![Русский](https://img.shields.io/badge/Язык-Русский-red)](assets/README/ru.md)
+[![English](https://img.shields.io/badge/LANGUAGE-ENGLISH-_?style=for-the-badge&logo=curseforge&labelColor=2c2c2c&color=e58e0e&logoColor=e58e0e)](README.md)
+[![Русский](https://img.shields.io/badge/ЯЗЫК-РУССКИЙ-_?style=for-the-badge&logo=curseforge&labelColor=2c2c2c&color=e58e0e&logoColor=e58e0e)](assets/README/ru.md)
 
 > Движок диалогов для Minecraft.
 
@@ -78,7 +78,7 @@ Cee Vyte, @ceevyte, kosoycded@gmail.com
 
 Распространяется под лицензией GPL-3.0. См. LICENSE для подробностей.
 
-[github-repo]: https://img.shields.io/badge/DelightZone-narrativa-blue?logo=github
+[github-repo]: https://img.shields.io/badge/-SOURCE-2c2c2c?style=for-the-badge&logo=github&logoColor=white
 [repo-url]: https://github.com/DelightZone/narrativa
 
 ## Участие в разработке
