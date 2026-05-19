@@ -5,7 +5,7 @@
 
 > Движок диалогов для Minecraft.
 
-[![GitHub][github-repo]][repo-url]
+[![Source](https://img.shields.io/badge/-SOURCE-2c2c2c?style=for-the-badge&logo=github&logoColor=white)](https://github.com/DelightZone/narrativa)
 
 ### Что такое Narrativa?
 Narrativa это движок диалогов для датапаков Minecraft 1.21.11. Он позволяет писать разветвлённые разговоры, описания, текст для атмосферы и всё, что угодно. Он сделан с помощью Bolt и использует модули `.bolt`.
@@ -82,9 +82,6 @@ pip install -r requirements.txt
 Cee Vyte, @ceevyte, kosoycded@gmail.com
 
 Распространяется под лицензией GPL-3.0. См. LICENSE для подробностей.
-
-[github-repo]: https://img.shields.io/badge/-SOURCE-2c2c2c?style=for-the-badge&logo=github&logoColor=white
-[repo-url]: https://github.com/DelightZone/narrativa
 
 ## Участие в разработке
 

@@ -5,7 +5,7 @@
 
 > A dialogue engine for Minecraft.
 
-[![GitHub][github-repo]][repo-url]
+[![Source](https://img.shields.io/badge/-SOURCE-2c2c2c?style=for-the-badge&logo=github&logoColor=white)](https://github.com/DelightZone/narrativa)
 
 ### What is Narrativa?
 Narrativa is a datapack dialogue engine for Minecraft 1.21.11. It lets you write branching conversations, descriptions, flavour text, or whatever else you want. It was made with Bolt and uses `.bolt` modules.
@@ -82,9 +82,6 @@ pip install -r requirements.txt
 Cee Vyte, @ceevyte, kosoycded@gmail.com
 
 Distributed under GPL-3.0. See LICENSE for details.
-
-[github-repo]: https://img.shields.io/badge/DelightZone-narrativa-blue?logo=github
-[repo-url]: https://github.com/DelightZone/narrativa
 
 ## Contributing
 
