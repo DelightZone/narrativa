@@ -1,7 +1,7 @@
 # Narrativa
 
 [![English](https://img.shields.io/badge/Language-English-blue)](README.md)
-[![Русский](https://img.shields.io/badge/Язык-Русский-red)](README_RU.md)
+[![Русский](https://img.shields.io/badge/Язык-Русский-red)](assets/README/ru.md)
 
 > Движок диалогов для Minecraft.
 

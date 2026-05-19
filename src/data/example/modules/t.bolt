@@ -1,5 +1,3 @@
-# I AM NOT DOING THIS, NONOONO
-
 LOCALE = "en"
 
 def get_active_locale():

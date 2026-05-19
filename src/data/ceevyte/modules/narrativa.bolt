@@ -12,6 +12,7 @@ append function_tag minecraft:load {
 function ceevyte:narrativa/load:
     scoreboard objectives add ceevyte.narrativa.g trigger {"text": "Narrativa Globals", "color": "gold"}
 
+
 ## Dialog navigation
 
 function ceevyte:narrativa/dialog/advance:
@@ -83,6 +84,7 @@ function ceevyte:narrativa/choice/resolve:
         $$(foo)
     
     scoreboard players reset /choice/index ceevyte.narrativa.g
+
 
 ## API
 

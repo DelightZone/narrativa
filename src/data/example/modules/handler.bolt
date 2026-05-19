@@ -79,6 +79,7 @@ function ceevyte:narrativa/handler/load:
 function ceevyte:narrativa/handler/tick:
     schedule function ceevyte:narrativa/handler/tick 1t replace
     execute as @a[tag=!ceevyte.narrativa.handler.forbidden] at @s:
+
         ## Dialog
 
         execute unless predicate ceevyte:narrativa/handler/sprint:
