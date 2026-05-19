@@ -3,8 +3,8 @@
         {
             "type": "bitmap",
             "file": "ceevyte:font/narrativa/heads/default.png",
-            "height": 11,
-            "ascent": 9.5,
+            "height": 16,
+            "ascent": 12,
             "chars": [
                 "123",
                 "456",

@@ -1,0 +1,36 @@
+DEFAULT_FONT = "xllifi:shaded"
+
+def SimpleSpeaker(
+    lines   =   None,
+    face    =   None,
+    name    =   "",
+    color   =   "white",
+    font    =   "ceevyte:narrativa/heads/default"
+):
+    if lines is None:
+        lines = []
+
+    if lines:
+        first = lines[0]
+    else:
+        first = ""
+    
+    speaker = [
+        {"translate": "[%s]", "color": color, "with": [name]},
+        first
+    ]
+    
+    if face:
+        speaker.insert(0, {"text": face, "font": font})
+    else:
+        speaker.insert(0, {"text": ""})
+    
+    result = [{"translate": "%s %s:  %s", "with": speaker, "font": DEFAULT_FONT}]
+    
+    for l in lines[1:]:
+        result.append({"translate": "%s", "font": DEFAULT_FONT, "with": [l]})
+    
+    return result
+
+def _Example(*lines, **kwargs):
+    return SimpleSpeaker(lines=list(lines), face="7", name="Example", **kwargs)

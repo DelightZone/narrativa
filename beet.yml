@@ -21,8 +21,11 @@ meta:
     entrypoint: [
       "ceevyte:narrativa",
 
-      "example:preset",
+      "example:dialog",
+      "example:choice",
       "example:handler",
 
-      "example:trees/example"
+
+
+      "example:trees/lorem_ipsum"
     ]

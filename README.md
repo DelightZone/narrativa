@@ -12,7 +12,7 @@ Narrativa is a datapack dialogue engine for Minecraft 1.21.11. It lets you write
 
 It handles API stuff, visuals, logic, and auto voice lines. You just feed it content and it does the rest.
 
-![Me :3](header.png)
+![Me :3](assets/header/en.png)
 
 ## How to use it
 

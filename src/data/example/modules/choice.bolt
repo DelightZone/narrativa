@@ -1,5 +1,3 @@
-## Setup
-
 from dataclasses import dataclass
 
 import ceevyte:narrativa as Narrativa

@@ -1,0 +1,83 @@
+## Setup
+
+COLORS = {
+    "default": "#7e8aa7"
+}
+
+CHOICE_MENU_TITLE = "Pick An Option:"
+
+import ceevyte:narrativa as Narrativa
+from ceevyte:narrativa import new_dialog
+
+from example:dialog import SimpleSpeaker
+
+from example:choice import option
+from example:choice import choice_menu
+
+def _Alex(*lines, **kwargs):
+    return SimpleSpeaker(lines=list(lines), face="1", name="Alex", color=COLORS["default"], **kwargs)
+
+def _Steve(*lines, **kwargs):
+    return SimpleSpeaker(lines=list(lines), face="7", name="Steve", color=COLORS["default"], **kwargs)
+
+
+## Data
+
+function ceevyte:dialog/lorem_ipsum:
+    new_dialog(
+        lines=[
+            _Steve('"Lorem ipsum dolor sit amet,',
+                'consectetur adipiscing elit."'),
+            _Steve('"Sed ultrices, velit et ultricies pharetra,',
+                'odio augue accumsan est,',
+                'eu auctor ipsum dui sit amet nisl."'),
+            _Steve('"Mauris mattis mauris et maximus ultricies."'),
+            ''
+        ],
+        actions=[
+            "",
+            "",
+            "",
+            "function ceevyte:choice/lorem_ipsum"
+        ],
+        autodub="ceevyte:dialog.example."
+    )
+
+function ceevyte:choice/lorem_ipsum:
+    choice_menu(
+        title= CHOICE_MENU_TITLE,
+        options= [
+            option(
+                "Option A",
+                "function ceevyte:dialog/lorem_ipsum/a"
+            ),
+            option(
+                "Option B",
+                "function ceevyte:dialog/lorem_ipsum/b"
+            )
+        ]
+    )
+
+function ceevyte:dialog/lorem_ipsum/a:
+    new_dialog(
+        lines=[
+            _Steve('"In sit amet sapien sit',
+                'amet leo finibus molestie."'),
+            _Steve('"Donec non turpis sapien."'),
+            _Steve('"Quisque luctus, erat at imperdiet porta,',
+                'sem sapien cursus risus, nec varius urna dui in est."')
+        ],
+        autodub="ceevyte:dialog.example.a."
+    )
+
+function ceevyte:dialog/lorem_ipsum/b:
+    new_dialog(
+        lines=[
+            _Alex('"In sit amet sapien sit',
+                'amet leo finibus molestie."'),
+            _Alex('"Donec non turpis sapien."'),
+            _Alex('"Quisque luctus, erat at imperdiet porta,',
+                'sem sapien cursus risus, nec varius urna dui in est."')
+        ],
+        autodub="ceevyte:dialog.example.b."
+    )

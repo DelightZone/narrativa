@@ -1,0 +1,19 @@
+{
+    "providers": [
+        {
+            "type": "reference",
+            "id": "xllifi:include/space"
+        },
+        {
+            "type": "reference",
+            "id": "xllifi:include/shaded",
+            "filter": {
+                "uniform": false
+            }
+        },
+        {
+            "type": "reference",
+            "id": "xllifi:include/unifont"
+        }
+    ]
+}
