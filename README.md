@@ -89,4 +89,6 @@ Distributed under GPL-3.0. See LICENSE for details.
 4. Push it (`git push origin feature/fooBar`)
 5. Open a [Pull Request](https://github.com/DelightZone/narrativa/pulls)
 
-<!-- execute in minecraft:overworld run tp @s -160.47 -57.00 91.87 3632.27 0.75 -->
+## Attribution
+
+- [xllifi](https://modrinth.com/resourcepack/mc10) — creator of the `mc10` font used in Narrativa

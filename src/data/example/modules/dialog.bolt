@@ -1,4 +1,4 @@
-DEFAULT_FONT = "xllifi:shaded"
+DEFAULT_FONT = "xllifi:mc10/shaded"
 
 def SimpleSpeaker(
     lines   =   None,

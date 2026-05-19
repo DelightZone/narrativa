@@ -2,18 +2,18 @@
     "providers": [
         {
             "type": "reference",
-            "id": "xllifi:include/space"
+            "id": "xllifi:mc10/include/space"
         },
         {
             "type": "reference",
-            "id": "xllifi:include/default",
+            "id": "xllifi:mc10/include/shaded",
             "filter": {
                 "uniform": false
             }
         },
         {
             "type": "reference",
-            "id": "xllifi:include/unifont"
+            "id": "xllifi:mc10/include/unifont"
         }
     ]
 }

@@ -1,3 +1,5 @@
+DEFAULT_FONT = "xllifi:mc10/default"
+
 from dataclasses import dataclass
 
 import ceevyte:narrativa as Narrativa
@@ -23,7 +25,10 @@ def choice_menu(
     options=None
 ):
     components = [
-        "",
+        {
+            "text": "",
+            "font": DEFAULT_FONT
+        },
         {
             "text": f"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n{title}",
             "color": "gray"

@@ -12,7 +12,7 @@ Narrativa это движок диалогов для датапаков Minecra
 
 Он обрабатывает API, визуальную часть, логику и автоматические голосовые строки. Ты просто задаёшь контент, а он делает остальное.
 
-![Эт я :3](assets/header/en.png)
+![Эт я :3](assets/header/ru.png)
 
 ## Как это использовать
 
@@ -88,3 +88,7 @@ Cee Vyte, @ceevyte, kosoycded@gmail.com
 3. Закоммить изменения (`git commit -am 'Add fooBar'`)
 4. Запушь изменения (`git push origin feature/fooBar`)
 5. Открой [Пул-Реквест](https://github.com/DelightZone/narrativa/pulls)
+
+## Атрибуция
+
+- [xllifi](https://modrinth.com/resourcepack/mc10) — автор шрифта `mc10`, использованного в Narrativa
