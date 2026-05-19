@@ -1,7 +1,7 @@
 # Narrativa
 
-[![English](https://img.shields.io/badge/Language-English-blue)](README.md)
-[![Русский](https://img.shields.io/badge/Язык-Русский-red)](assets/README/ru.md)
+[![English](https://img.shields.io/badge/LANGUAGE-ENGLISH-_?style=for-the-badge&labelColor=2c2c2c&color=c65550)](README.md)
+[![Русский](https://img.shields.io/badge/ЯЗЫК-РУССКИЙ-_?style=for-the-badge&labelColor=2c2c2c&color=c65550)](assets/README/ru.md)
 
 > A dialogue engine for Minecraft.
 
